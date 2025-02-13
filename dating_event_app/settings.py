@@ -42,6 +42,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
+    'dating-events-app-512687071453.herokuapp.com',
     ]
 
 # Add deployed project links here
