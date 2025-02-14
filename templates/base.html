@@ -45,7 +45,7 @@
       <div
         class="absolute inset-0 opacity-20"
         style="
-          background-image: url('data:image/svg+xml,%3Csvg) width='60' height='60' viewBox='006060' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Cpath d='M3634v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM634v-4H4v4H0v2h4v4h2v-4h4v-2H6zM64V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+           background-image: url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%229C92AC%22%20fill-opacity%3D%220.4%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6V0H4v4H0v2h4v4h2V6h4V4H6z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E');
         "></div>
     </div>
 
@@ -97,24 +97,24 @@
                   class="absolute right-0 mt-2 w-48 glass-effect rounded-xl shadow-lg py-1 border border-white/20 hidden group-hover:block">
                   {% if request.user.is_superuser %}
                   <a
-                    href="{% url 'add_product' %}"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600">
+                    href=""
+                    class="block px-4 py-2 text-sm text-gray-700">
                     Admin Area
                   </a>
                   {% endif %}
                   <a
                     href="{% url 'match-making' %}"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600">
+                    class="block px-4 py-2 text-sm text-gray-700">
                     Match Making
                   </a>
                   <a
-                    href="{% url 'user_profile' %}"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600">
+                    href=""
+                    class="block px-4 py-2 text-sm text-gray-700">
                     My Profile
                   </a>
                   <a
                     href="{% url 'account_logout' %}"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600">
+                    class="block px-4 py-2 text-sm text-gray-700">
                     Logout
                   </a>
                 </div>
@@ -190,7 +190,7 @@
             <div class="space-y-2">
               {% if request.user.is_superuser %}
               <a
-                href="{% url 'add_product' %}"
+                href=""
                 class="block px-4 py-2 text-gray-700 hover:bg-rose-50 hover:text-rose-600 rounded-lg">
                 Admin Area
               </a>
@@ -201,7 +201,7 @@
                 Match Making
               </a>
               <a
-                href="{% url 'profile' %}"
+                href=""
                 class="block px-4 py-2 text-gray-700 hover:bg-rose-50 hover:text-rose-600 rounded-lg">
                 My Profile
               </a>
