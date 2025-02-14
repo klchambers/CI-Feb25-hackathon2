@@ -1,0 +1,54 @@
+{# templates/events/includes/event_filters.html #}
+<div class="glass-effect mt-8 p-6 rounded-2xl">
+    <form method="get" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Event Type Filter -->
+        <div class="space-y-2">
+            <label class="text-sm font-medium text-gray-700">Event Type</label>
+            <select name="category" class="w-full p-3 rounded-xl bg-white/50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                <option value="">All Event Types</option>
+                {% for category in categories %}
+                    <option value="{{ category.slug }}" {% if request.GET.category == category.slug %}selected{% endif %}>
+                        {{ category.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Date Filter -->
+        <div class="space-y-2">
+            <label class="text-sm font-medium text-gray-700">Date</label>
+            <select name="date_filter" class="w-full p-3 rounded-xl bg-white/50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                <option value="">Any Date</option>
+                <option value="today" {% if request.GET.date_filter == 'today' %}selected{% endif %}>Today</option>
+                <option value="this_week" {% if request.GET.date_filter == 'this_week' %}selected{% endif %}>This Week</option>
+                <option value="this_weekend" {% if request.GET.date_filter == 'this_weekend' %}selected{% endif %}>This Weekend</option>
+                <option value="next_week" {% if request.GET.date_filter == 'next_week' %}selected{% endif %}>Next Week</option>
+            </select>
+        </div>
+
+        <!-- Location Filter -->
+        <div class="space-y-2">
+            <label class="text-sm font-medium text-gray-700">Location</label>
+            <input type="text" name="location" 
+                   value="{{ request.GET.location|default:'' }}"
+                   placeholder="Enter city" 
+                   class="w-full p-3 rounded-xl bg-white/50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500">
+        </div>
+
+        <!-- Filter Button -->
+        <div class="md:col-span-3 flex justify-end mt-4">
+            <button type="submit" 
+                    class="px-6 py-2 bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-xl 
+                           hover:from-purple-600 hover:to-indigo-700 transition-all transform hover:scale-[1.02]">
+                Apply Filters
+            </button>
+            {% if request.GET %}
+                <a href="{% url 'events:event_list' %}" 
+                   class="ml-4 px-6 py-2 border border-gray-200 text-gray-700 rounded-xl 
+                          hover:bg-gray-50 transition-all">
+                    Clear Filters
+                </a>
+            {% endif %}
+        </div>
+    </form>
+</div>

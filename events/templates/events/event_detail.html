@@ -1,0 +1,94 @@
+{# templates/events/event_detail.html #}
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="relative z-10">
+    <div class="max-w-4xl mx-auto">
+        <!-- Event Header -->
+        <div class="glass-effect rounded-2xl overflow-hidden">
+            <div class="relative h-64">
+                {% if event.image %}
+                    <img src="{{ event.image.url }}" alt="{{ event.title }}" class="w-full h-full object-cover">
+                {% else %}
+                    <img src="/api/placeholder/800/400" alt="{{ event.title }}" class="w-full h-full object-cover">
+                {% endif %}
+                <div class="absolute top-4 right-4">
+                    <span class="bg-purple-500 text-white px-4 py-1 rounded-full text-sm">
+                        {{ event.category.name }}
+                    </span>
+                </div>
+            </div>
+            
+            <div class="p-8">
+                <h1 class="text-3xl font-bold mb-4">{{ event.title }}</h1>
+                
+                <!-- Event Details -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <div class="flex items-center text-gray-600 mb-4">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                            <span>{{ event.date|date:"l, F j, Y • g:i A" }}</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 mb-4">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>{{ event.duration }} hours</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex items-center text-gray-600 mb-4">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            </svg>
+                            <div>
+                                <p class="font-medium">{{ event.location_name }}</p>
+                                <p class="text-sm">{{ event.address }}</p>
+                                <p class="text-sm">{{ event.city }}, {{ event.state }} {{ event.zip_code }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Description -->
+                <div class="prose max-w-none mb-8">
+                    <h2 class="text-xl font-semibold mb-4">About This Event</h2>
+                    {{ event.description|linebreaks }}
+                </div>
+                
+                <!-- Booking Section -->
+                <div class="flex flex-col md:flex-row justify-between items-center p-6 bg-gray-50 rounded-xl">
+                    <div>
+                        <p class="text-2xl font-bold text-purple-600">${{ event.price }}</p>
+                        <p class="text-gray-600">{{ event.spots_remaining }} spots remaining</p>
+                    </div>
+                    <button class="mt-4 md:mt-0 px-8 py-3 bg-gradient-to-r from-purple-500 to-indigo-600 
+                                 text-white rounded-xl hover:from-purple-600 hover:to-indigo-700 
+                                 transition-all transform hover:scale-[1.02]">
+                        Book Now
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Related Events -->
+        {% if related_events %}
+        <div class="mt-12">
+            <h2 class="text-2xl font-bold mb-6">Similar Events</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {% for related_event in related_events %}
+                    {% include 'events/includes/event_card.html' with event=related_event %}
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
