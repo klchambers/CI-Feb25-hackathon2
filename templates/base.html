@@ -350,8 +350,8 @@
               <div
                 class="flex flex-wrap justify-center sm:justify-end space-x-4">
                 <!--Privacy Policy Modal -->
-                <a href="#" data-modal-target="default-modal" data-modal-toggle="default-modal" class="text-sm text-gray-600 hover:text-rose-600">
-                  Toggle modal
+                <a href="#" data-modal-target="pp-modal" data-modal-toggle="pp-modal" class="text-sm text-gray-600 hover:text-rose-600">
+                  Privacy Policy
                 </a>
                 <!-- Main modal -->
                 <div id="default-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -536,6 +536,30 @@
           });
         });
       });
+
+              // Get the modal element and buttons
+        const modal = document.getElementById('pp-modal');
+        const openModalButton = document.querySelector("[data-modal-toggle='pp-modal']");
+        const closeModalButton = modal.querySelector("[data-modal-hide='pp-modal']");
+
+        // Open modal when the button is clicked
+        openModalButton.addEventListener('click', function(event) {
+          event.preventDefault();
+          modal.classList.remove('hidden');
+        });
+
+        // Close modal when the close button is clicked
+        closeModalButton.addEventListener('click', function(event) {
+          event.preventDefault();
+          modal.classList.add('hidden');
+        });
+
+        // Optional: Close modal when clicking outside of the modal
+        window.addEventListener('click', function(event) {
+          if (event.target === modal) {
+            modal.classList.add('hidden');
+          }
+        });
     </script>
     {% endblock %}
   </body>
