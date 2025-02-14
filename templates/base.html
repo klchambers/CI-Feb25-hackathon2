@@ -98,23 +98,23 @@
                   {% if request.user.is_superuser %}
                   <a
                     href=""
-                    class="block px-4 py-2 text-sm text-gray-700">
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600">
                     Admin Area
                   </a>
                   {% endif %}
                   <a
                     href="{% url 'match-making' %}"
-                    class="block px-4 py-2 text-sm text-gray-700">
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600">
                     Match Making
                   </a>
                   <a
                     href=""
-                    class="block px-4 py-2 text-sm text-gray-700">
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600">
                     My Profile
                   </a>
                   <a
                     href="{% url 'account_logout' %}"
-                    class="block px-4 py-2 text-sm text-gray-700">
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600">
                     Logout
                   </a>
                 </div>
