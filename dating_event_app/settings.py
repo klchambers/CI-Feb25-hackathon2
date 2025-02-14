@@ -40,7 +40,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'https://dating-events-app-512687071453.herokuapp.com',
+    'dating-events-app-512687071453.herokuapp.com',
     'localhost',
     '127.0.0.1',
     '8000',
