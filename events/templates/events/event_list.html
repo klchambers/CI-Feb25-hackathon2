@@ -1,0 +1,83 @@
+{# templates/events/event_list.html #}
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="relative z-10">
+    <!-- Header Section -->
+    <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+            Upcoming Events
+        </h1>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+            Discover exciting dating events and experiences. From speed dating to cooking classes, 
+            find the perfect opportunity to connect with someone special.
+        </p>
+    </div>
+
+    <!-- Filters -->
+    {% include 'events/includes/event_filters.html' %}
+
+    <!-- Events Grid -->
+    <div class="mt-8">
+        {% if events %}
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for event in events %}
+                    {% include 'events/includes/event_card.html' with event=event %}
+                {% endfor %}
+            </div>
+            
+            <!-- Pagination -->
+            {% if is_paginated %}
+            <div class="mt-12 flex justify-center">
+                <nav class="glass-effect rounded-xl inline-flex divide-x divide-gray-200">
+                    {% if page_obj.has_previous %}
+                        <a href="?page={{ page_obj.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" 
+                           class="px-4 py-2 text-gray-600 hover:text-purple-600 transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                        </a>
+                    {% endif %}
+                    
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <span class="px-4 py-2 text-white bg-gradient-to-r from-purple-500 to-indigo-600">{{ num }}</span>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <a href="?page={{ num }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
+                               class="px-4 py-2 text-gray-600 hover:text-purple-600 transition-colors">{{ num }}</a>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
+                           class="px-4 py-2 text-gray-600 hover:text-purple-600 transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    {% endif %}
+                </nav>
+            </div>
+            {% endif %}
+        {% else %}
+            <!-- No Results Message -->
+            <div class="text-center mt-12">
+                <div class="glass-effect rounded-2xl p-8 max-w-md mx-auto">
+                    <h3 class="mt-4 text-lg font-semibold text-gray-700">No Events Found</h3>
+                    <p class="mt-2 text-gray-600">
+                        Try adjusting your filters or search criteria to find more events.
+                    </p>
+                    {% if request.GET %}
+                        <a href="{% url 'events:event_list' %}" 
+                           class="mt-4 inline-block px-6 py-2 bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-xl 
+                                  hover:from-purple-600 hover:to-indigo-700 transition-all transform hover:scale-[1.02]">
+                            Clear Filters
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
