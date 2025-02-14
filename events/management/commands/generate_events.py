@@ -143,7 +143,7 @@ class Command(BaseCommand):
                     capacity=capacity,
                     spots_remaining=capacity,
                     is_active=True,
-                    is_demo=True
+                    is_demo=True,
                 )
                 events_created += 1
                 
