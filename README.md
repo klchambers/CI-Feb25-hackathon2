@@ -1,5 +1,9 @@
 # Feb25-hackathon
 
+This project is a dating events app where you can select events around the uk to book and join.
+
+# UX
+
 ## WireFrames
 
 ### Home Page
@@ -12,18 +16,10 @@
 ![alt text](image-3.png)
 
 ### Events Details
-
 ![alt text](image-4.png)
 
 ### Login Page
-
-![alt text](image-2.png)
-
-This project is a dating events app where you can select events around the uk to book and join. 
-
-# UX
-
-## Wireframes
+![alt text](image-2.png) 
 
 ## User Stories
 
@@ -47,8 +43,6 @@ This project is a dating events app where you can select events around the uk to
 # Features
 
 # Deployment
-
-## Deployment to Heroku
 
 Go to Heroku.com and implement the following steps in this order:
 
