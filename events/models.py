@@ -1,6 +1,7 @@
 # events/models.py
 from django.db import models
 from django.utils.text import slugify
+from django.contrib.auth.models import User
 
 class EventCategory(models.Model):
     name = models.CharField(max_length=100)
@@ -31,6 +32,9 @@ class Event(models.Model):
     image = models.ImageField(upload_to='events/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
+    # New fields for user management
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    is_demo = models.BooleanField(default=False)  # To distinguish between demo and user events
     
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -41,3 +45,7 @@ class Event(models.Model):
     
     def __str__(self):
         return self.title
+
+    def is_editable_by(self, user):
+        """Check if the event can be edited by the given user"""
+        return user.is_authenticated and self.created_by == user
