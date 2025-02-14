@@ -11,7 +11,7 @@ django-allauth==0.63.3
 django-crispy-forms==2.2
 django-storages==1.14.4
 django_csp==3.8
-docutils==0.15.2
+docutils>=0.21.2
 gunicorn==22.0.0
 jmespath==1.0.1
 packaging==24.1
