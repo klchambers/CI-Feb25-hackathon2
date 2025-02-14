@@ -142,7 +142,8 @@ class Command(BaseCommand):
                     price=price,
                     capacity=capacity,
                     spots_remaining=capacity,
-                    is_active=True
+                    is_active=True,
+                    is_demo=True,
                 )
                 events_created += 1
                 
