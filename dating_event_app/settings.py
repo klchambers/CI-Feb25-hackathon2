@@ -40,14 +40,14 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'dating-events-app-512687071453.herokuapp.com',
+    'https://dating-events-app-512687071453.herokuapp.com',
     'localhost',
     '127.0.0.1',
     '8000',
     ]
 
 # Add deployed project links here
-CSRF_TRUSTED_ORIGINS = []
+CSRF_TRUSTED_ORIGINS = ['https://dating-events-app-512687071453.herokuapp.com']
 
 
 
