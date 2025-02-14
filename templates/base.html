@@ -296,27 +296,85 @@
               </ul>
             </div>
 
-            <!-- Contact -->
+                        <!-- Contact Section -->
             <div>
               <h3 class="font-semibold text-gray-800 mb-4">Contact</h3>
               <ul class="space-y-2">
+                <!-- Contact Link -->
                 <li>
-                  <a href="#" class="text-sm text-gray-600 hover:text-rose-600">
-                    Support
-                  </a>
+                  <a href="#contact-modal" class="text-sm text-gray-600 hover:text-rose-600">Contact</a>
                 </li>
+                
+                <!-- FAQ Link -->
                 <li>
-                  <a href="#" class="text-sm text-gray-600 hover:text-rose-600">
-                    FAQ
-                  </a>
+                  <a href="#faq-modal" class="text-sm text-gray-600 hover:text-rose-600">FAQ</a>
                 </li>
+                
+                <!-- Safety Tips Link -->
                 <li>
-                  <a href="#" class="text-sm text-gray-600 hover:text-rose-600">
-                    Safety Tips
-                  </a>
+                  <a href="#safety-tips-modal" class="text-sm text-gray-600 hover:text-rose-600">Safety Tips</a>
                 </li>
               </ul>
             </div>
+
+            <!-- Modals -->
+            <!-- Contact Modal -->
+            <input type="checkbox" id="contact-modal" class="hidden">
+            <div class="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50 z-50" style="display:none;">
+              <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+                <h2 class="text-xl font-bold mb-4">Contact Us</h2>
+                <p class="mb-4">If you have any questions or need assistance, please contact us using the form below.</p>
+                <form action="#" method="POST">
+                  <input type="text" placeholder="Your Name" class="mb-4 p-2 w-full border rounded-md">
+                  <input type="email" placeholder="Your Email" class="mb-4 p-2 w-full border rounded-md">
+                  <textarea placeholder="Your Message" class="mb-4 p-2 w-full border rounded-md"></textarea>
+                  <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg">Send Message</button>
+                </form>
+                <label for="contact-modal" class="inline-block bg-red-500 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-red-600">Close</label>
+              </div>
+            </div>
+
+            <!-- FAQ Modal -->
+            <input type="checkbox" id="faq-modal" class="hidden">
+            <div class="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50 z-50" style="display:none;">
+              <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+                <h2 class="text-xl font-bold mb-4">Frequently Asked Questions</h2>
+                <div class="mb-4">
+                  <p class="font-semibold">Q1: How do I register for an event?</p>
+                  <p>A: You can register by visiting the "Events" page and choosing an event to sign up for.</p>
+                </div>
+                <div class="mb-4">
+                  <p class="font-semibold">Q2: Are there any fees for events?</p>
+                  <p>A: Some events may require a registration fee. Please check the event details for more information.</p>
+                </div>
+                <label for="faq-modal" class="inline-block bg-red-500 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-red-600">Close</label>
+              </div>
+            </div>
+
+            <!-- Safety Tips Modal -->
+            <input type="checkbox" id="safety-tips-modal" class="hidden">
+            <div class="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50 z-50" style="display:none;">
+              <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+                <h2 class="text-xl font-bold mb-4">Safety Tips</h2>
+                <ul class="mb-4 list-disc pl-5">
+                  <li>Always meet in public places.</li>
+                  <li>Inform a friend or family member about your plans.</li>
+                  <li>Do not share personal information too early.</li>
+                  <li>Trust your instincts, and if something feels wrong, leave immediately.</li>
+                </ul>
+                <label for="safety-tips-modal" class="inline-block bg-red-500 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-red-600">Close</label>
+              </div>
+            </div>
+
+            <!-- Show modals when checkboxes are checked -->
+            <style>
+              #contact-modal:checked ~ .fixed:nth-child(3),
+              #faq-modal:checked ~ .fixed:nth-child(5),
+              #safety-tips-modal:checked ~ .fixed:nth-child(7) {
+                display: flex;
+              }
+            </style>    
+        </div>
 
             <!-- Newsletter -->
             <div>
@@ -416,32 +474,6 @@
         });
       });
 
-        // Get the modal element and buttons
-const modal = document.getElementById('pp-modal');
-const openModalButton = document.querySelector("[data-modal-toggle='pp-modal']");
-const closeModalButton = modal.querySelector("[data-modal-hide='pp-modal']");
-
-// Open modal when the button is clicked
-openModalButton.addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent default link action (scrolling to top)
-    modal.classList.remove('hidden');
-    modal.setAttribute('aria-hidden', 'false'); // Mark the modal as visible for accessibility
-});
-
-// Close modal when the close button is clicked
-closeModalButton.addEventListener('click', function(event) {
-    event.preventDefault();
-    modal.classList.add('hidden');
-    modal.setAttribute('aria-hidden', 'true'); // Mark the modal as hidden for accessibility
-});
-
-// Optional: Close modal when clicking outside of the modal
-window.addEventListener('click', function(event) {
-    if (event.target === modal) {
-        modal.classList.add('hidden');
-        modal.setAttribute('aria-hidden', 'true');
-    }
-});
     </script>
     {% endblock %}
   </body>
