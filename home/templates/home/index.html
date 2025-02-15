@@ -1,34 +1,30 @@
 {% extends "base.html" %} {% load static %} {% block page_header %}
 <!-- Hero Section -->
-<section
-  id="hero"
-  class="h-screen bg-gradient-to-br from-rose-100 via-purple-100 to-sky-100">
-  <div class="max-w-6xl mx-auto text-center px-4 pt-16">
-    <h3
-      class="pb-8 text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-purple-600">
-      Find Your Perfect Date Night
-    </h3>
+<div class="max-w-6xl mx-auto text-center px-4 pt-16">
+  <h3
+    class="pb-8 text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-purple-600">
+    Find Your Perfect Date Night
+  </h3>
 
-    <p class="max-w-3xl mx-auto mb-6 text-lg md:text-2xl text-black pb-16">
-      Events and experiences for every stage of your love story
-    </p>
+  <p class="max-w-3xl mx-auto mb-6 text-lg md:text-2xl text-black pb-4">
+    Events and experiences for every stage of your love story
+  </p>
 
-    <div class="flex justify-center">
-      <img
-        class="opacity-50 rounded-2xl w-full max-w-lg pb-16"
-        src="{% static 'images/perfect-match.jpg' %}"
-        alt="" />
-    </div>
-
-    <div class="flex justify-center mt-8">
-      <a
-        href=""
-        class="px-6 py-3 text-lg rounded-full shadow-lg bg-gradient-to-r from-rose-500 to-purple-600 text-white hover:from-rose-600 hover:to-purple-700 transition-all">
-        Browse Events
-      </a>
-    </div>
+  <div class="flex justify-center">
+    <img
+      class="opacity-50 rounded-3xl w-full max-w-lg pb-3"
+      src="{% static 'images/perfect-match.jpg' %}"
+      alt="header-image" />
   </div>
-</section>
+
+  <div class="flex justify-center mt-8 pb-8">
+    <a
+      href="{% url 'events:event_list' %}"
+      class="px-6 py-3 text-lg rounded-full shadow-lg bg-gradient-to-r from-rose-500 to-purple-600 text-white hover:from-rose-600 hover:to-purple-700 transition-all max-w-xs sm:max-w-sm md:max-w-lg mx-auto w-full">
+      Browse Events
+    </a>
+  </div>
+</div>
 
 <!-- About Section -->
 <section id="about" class="bg-white py-12">
@@ -84,7 +80,7 @@
       <img
         class="rounded-lg object-cover w-full max-w-[12rem] h-[12rem]"
         src="{% static 'images/speed-dating.jpg' %}"
-        alt="" />
+        alt="speed-dating-image" />
     </div>
 
     <!-- Card 2 -->
@@ -94,7 +90,7 @@
       <img
         class="rounded-lg object-cover w-full max-w-[12rem] h-[12rem]"
         src="{% static 'images/singles-mixers.jpg' %}"
-        alt="" />
+        alt="singles-mixers-image" />
     </div>
 
     <!-- Card 3 -->
@@ -104,7 +100,7 @@
       <img
         class="rounded-lg object-cover w-full max-w-[12rem] h-[12rem]"
         src="{% static 'images/group-activities.jpg' %}"
-        alt="" />
+        alt="group-activities-image" />
     </div>
   </div>
 </section>
@@ -126,7 +122,7 @@
       <img
         class="rounded-lg object-cover w-full max-w-[12rem] h-[12rem]"
         src="{% static 'images/cooking-classes.jpg' %}"
-        alt="" />
+        alt="cooking-classes-image" />
     </div>
 
     <!-- Card 2 -->
@@ -136,7 +132,7 @@
       <img
         class="rounded-lg object-cover w-full max-w-[12rem] h-[12rem]"
         src="{% static 'images/wine-tasting.jpg' %}"
-        alt="" />
+        alt="wine-tasting-image" />
     </div>
 
     <!-- Card 3 -->
@@ -146,7 +142,7 @@
       <img
         class="rounded-lg object-cover w-full max-w-[12rem] h-[12rem]"
         src="{% static 'images/adventure-days.jpg' %}"
-        alt="" />
+        alt="adventure-days-image" />
     </div>
   </div>
 </section>
@@ -169,7 +165,7 @@
       <img
         class="rounded-lg object-cover w-full max-w-[12rem] h-[12rem]"
         src="{% static 'images/couples-retreat.jpg' %}"
-        alt="" />
+        alt="couples-retreat-image" />
     </div>
 
     <!-- Card 2 -->
@@ -179,7 +175,7 @@
       <img
         class="rounded-lg object-cover w-full max-w-[12rem] h-[12rem]"
         src="{% static 'images/dance-classes.jpg' %}"
-        alt="" />
+        alt="dance-classes-image" />
     </div>
 
     <!-- Card 3 -->
@@ -189,7 +185,7 @@
       <img
         class="rounded-lg object-cover w-full max-w-[12rem] h-[12rem]"
         src="{% static 'images/dating-workshop.jpg' %}"
-        alt="" />
+        alt="date-night-workshop-image" />
     </div>
   </div>
 </section>
