@@ -6,6 +6,10 @@ from .models import Event, EventCategory
 from django.db.models import Q
 from django.utils import timezone
 from datetime import timedelta
+from django.contrib import messages
+from django.shortcuts import redirect
+import logging
+from .forms import EventForm
 
 class EventListView(ListView):
     model = Event
@@ -106,18 +110,27 @@ class EventListView(ListView):
         
         return context
     
+logger = logging.getLogger(__name__)
+
 class EventCreateView(LoginRequiredMixin, CreateView):
     model = Event
+    form_class = EventForm  # Use the custom form
     template_name = 'events/event_form.html'
-    fields = ['title', 'description', 'category', 'date', 'duration', 
-              'location_name', 'address', 'city', 'state', 'zip_code', 
-              'price', 'capacity', 'image']
-    success_url = reverse_lazy('events:event_list')
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
-        form.instance.is_demo = False
+        form.instance.is_demo = False  # Ensure it's not a demo event
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('events:event_detail', kwargs={'slug': self.object.slug})
+
+    def form_invalid(self, form):
+        messages.error(self.request, "There was an error creating the event.")
+        print("Form errors:", form.errors)  # Log errors
+        print("POST data received:", self.request.POST)  # Log request data
+        return self.render_to_response(self.get_context_data(form=form))
+
     
 class EventUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Event
@@ -127,26 +140,30 @@ class EventUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
               'price', 'capacity', 'image']
 
     def test_func(self):
+        """Only allow the event creator to edit."""
         event = self.get_object()
-        return event.is_editable_by(self.request.user)
+        return self.request.user == event.created_by
+
+    def form_valid(self, form):
+        messages.success(self.request, "Event updated successfully!")
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse_lazy('events:event_detail', kwargs={'slug': self.object.slug})
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        event = self.object
-        context['duration_in_hours'] = event.duration.total_seconds() / 3600 if event.duration else 1
-        return context
 
 class EventDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Event
     template_name = 'events/event_confirm_delete.html'
     success_url = reverse_lazy('events:event_list')
-    
+
     def test_func(self):
+        """Only allow the event creator to delete."""
         event = self.get_object()
-        return event.is_editable_by(self.request.user)
+        return self.request.user == event.created_by
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(request, "Event deleted successfully!")
+        return super().delete(request, *args, **kwargs)
 
     
 class EventDetailView(DetailView):

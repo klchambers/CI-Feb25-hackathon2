@@ -2,6 +2,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth.models import User
+import uuid
 
 class EventCategory(models.Model):
     name = models.CharField(max_length=100)
@@ -16,9 +17,9 @@ class EventCategory(models.Model):
 
 class Event(models.Model):
     title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, blank=True)
     description = models.TextField()
-    category = models.ForeignKey(EventCategory, on_delete=models.PROTECT)
+    category = models.ForeignKey('EventCategory', on_delete=models.PROTECT)
     date = models.DateTimeField()
     duration = models.DurationField()
     location_name = models.CharField(max_length=200)
@@ -32,17 +33,29 @@ class Event(models.Model):
     image = models.ImageField(upload_to='events/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
-    # New fields for user management
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    is_demo = models.BooleanField(default=False)  # To distinguish between demo and user events
-    
+    is_demo = models.BooleanField(default=False)
+
     def save(self, *args, **kwargs):
+        # Generate a slug if it doesn’t exist
         if not self.slug:
-            self.slug = slugify(self.title)
+            base_slug = slugify(self.title)
+            slug = base_slug
+            count = 1
+
+            # Ensure uniqueness
+            while Event.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{count}"
+                count += 1
+
+            self.slug = slug
+
+        # Ensure spots_remaining is set correctly
         if not self.spots_remaining:
             self.spots_remaining = self.capacity
+        
         super().save(*args, **kwargs)
-    
+
     def __str__(self):
         return self.title
 

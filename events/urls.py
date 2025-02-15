@@ -12,4 +12,4 @@ urlpatterns = [
     
     path('<slug:slug>/edit/', views.EventUpdateView.as_view(), name='event_update'),
     path('<slug:slug>/delete/', views.EventDeleteView.as_view(), name='event_delete'),
-]
+] 
