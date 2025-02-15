@@ -16,7 +16,6 @@ import dj_database_url
 if os.path.isfile('env.py'):
     import env
 
-
 # Added as temporary workaround of the: 
 # AttributeError: 'BlankChoiceIterator' object has no attribute '__len__' "
 
@@ -34,22 +33,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'sdsd7gsd7f')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True
 
 ALLOWED_HOSTS = [
     'dating-events-app-512687071453.herokuapp.com',
     'localhost',
     '127.0.0.1',
+    '.gitpod.io',
     ]
 
 # Add deployed project links here
-CSRF_TRUSTED_ORIGINS = [
-    'http://dating-events-app-512687071453.herokuapp.com',
-    'http://127.0.0.1:8000',
-    ]
+CSRF_TRUSTED_ORIGINS = ['https://dating-events-app-512687071453.herokuapp.com']
 
 
 
@@ -72,12 +70,23 @@ INSTALLED_APPS = [
     'main',
     'user_profile',
     'events',
+    'contact',
 
     # other
     'crispy_forms',
     'crispy_bootstrap4',
     'storages',
 ]
+
+# AllAuth Configuration
+ACCOUNT_LOGIN_METHODS = {'username'}  
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -128,42 +137,29 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-#ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-#ACCOUNT_EMAIL_REQUIRED = True
-#ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-#ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
-#ACCOUNT_USERNAME_MIN_LENGTH = 4
-LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/'
-
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': tmpPostgres.path.replace('/', ''),
-        'USER': tmpPostgres.username,
-        'PASSWORD': tmpPostgres.password,
-        'HOST': tmpPostgres.hostname,
-        'PORT': 5432,
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
-#if 'DATABASE_URL' in os.environ:
-#    DATABASES = {
-#        'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
-#    }
-#else:
-#    DATABASES = {
-#        'default': {
-#            'ENGINE': 'django.db.backends.sqlite3',
-#            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#        }
-#    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -195,18 +191,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-#if 'DEVELOPMENT' in os.environ:
-#    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-#    DEFAULT_FROM_EMAIL = 'handcraft@example.com'
-#else:
-#    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-#    EMAIL_PORT = 587
-#    EMAIL_USE_TLS = True
-#    EMAIL_HOST = 'smtp.gmail.com'
-#    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-#    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
-#    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -218,15 +202,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
-#STATIC_URL = '/static/'
-#if 'DEVELOPMENT' in os.environ:
-#    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-#else:
-#    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
