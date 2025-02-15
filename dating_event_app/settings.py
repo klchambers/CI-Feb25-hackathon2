@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
     #'allauth.socialaccount.providers.google',
     #'allauth.socialaccount.providers.facebook',
     'home',
@@ -76,6 +77,16 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'storages',
 ]
+
+# AllAuth Configuration
+ACCOUNT_LOGIN_METHODS = {'username'}  
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
