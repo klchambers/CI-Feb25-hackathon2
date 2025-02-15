@@ -1,11 +1,197 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends "base.html" %} {% load static %} {% block page_header %}
+<!-- Hero Section -->
+<section
+  id="hero"
+  class="h-screen bg-gradient-to-br from-rose-100 via-purple-100 to-sky-100">
+  <div class="max-w-6xl mx-auto text-center px-4 pt-16">
+    <h3
+      class="pb-8 text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-purple-600">
+      Find Your Perfect Date Night
+    </h3>
 
+    <p class="max-w-3xl mx-auto mb-6 text-lg md:text-2xl text-black pb-16">
+      Events and experiences for every stage of your love story
+    </p>
 
-{% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+    <div class="flex justify-center">
+      <img
+        class="opacity-50 rounded-2xl w-full max-w-lg pb-16"
+        src="{% static 'images/perfect-match.jpg' %}"
+        alt="" />
     </div>
+
+    <div class="flex justify-center mt-8">
+      <a
+        href=""
+        class="px-6 py-3 text-lg rounded-full shadow-lg bg-gradient-to-r from-rose-500 to-purple-600 text-white hover:from-rose-600 hover:to-purple-700 transition-all">
+        Browse Events
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="bg-white py-12">
+  <div class="text-center mb-8">
+    <h4
+      class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-purple-600">
+      About Date Night Events
+    </h4>
+  </div>
+
+  <div
+    class="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-4 place-items-center">
+    <!-- Box 1 -->
+    <div
+      class="flex flex-col p-6 rounded-lg shadow-lg bg-gradient-to-br from-rose-100 via-purple-100 to-sky-100 lg:w-[20rem] w-[80%]">
+      <p class="text-lg font-semibold">200+ Monthly Events</p>
+      <p class="text-xs font-light">
+        Speed Dating, Traffic Light Parties, and more
+      </p>
+    </div>
+
+    <!-- Box 2 -->
+    <div
+      class="flex flex-col p-6 rounded-lg shadow-lg bg-gradient-to-br from-rose-100 via-purple-100 to-sky-100 lg:w-[20rem] w-[80%]">
+      <p class="text-lg font-semibold">Active Community</p>
+      <p class="text-xs font-light">xxxx Active Members</p>
+    </div>
+
+    <!-- Box 3 -->
+    <div
+      class="flex flex-col p-6 rounded-lg shadow-lg bg-gradient-to-br from-rose-100 via-purple-100 to-sky-100 lg:w-[20rem] w-[80%]">
+      <p class="text-lg font-semibold">Expert Event Partners</p>
+      <p class="text-xs font-light">Our Event Partners</p>
+    </div>
+  </div>
+</section>
+
+<!-- Singles Events -->
+<section
+  class="py-12 bg-gradient-to-br from-rose-100 via-purple-100 to-sky-100">
+  <div class="text-center mb-8">
+    <h4 class="text-3xl font-bold text-center">For Singles</h4>
+    <p>Find Your Perfect Match</p>
+  </div>
+
+  <!-- Singles Cards -->
+  <div
+    class="grid grid-cols-1 lg:grid-cols-3 lg:grid-cols-3 gap-14 max-w-6xl mx-auto px-4 place-items-center">
+    <!-- Card 1 -->
+    <div
+      class="flex flex-col items-center p-6 rounded-lg bg-white shadow-lg w-[18rem] md:w-[20rem]">
+      <p class="text-lg font-semibold">Speed Dating</p>
+      <img
+        class="rounded-lg object-cover w-full max-w-[12rem] h-[12rem]"
+        src="{% static 'images/speed-dating.jpg' %}"
+        alt="" />
+    </div>
+
+    <!-- Card 2 -->
+    <div
+      class="flex flex-col items-center p-6 rounded-lg bg-white shadow-lg w-[18rem] md:w-[20rem]">
+      <p class="text-lg font-semibold">Singles Mixers</p>
+      <img
+        class="rounded-lg object-cover w-full max-w-[12rem] h-[12rem]"
+        src="{% static 'images/singles-mixers.jpg' %}"
+        alt="" />
+    </div>
+
+    <!-- Card 3 -->
+    <div
+      class="flex flex-col items-center p-6 rounded-lg bg-white shadow-lg w-[18rem] md:w-[20rem]">
+      <p class="text-lg font-semibold">Group Activities</p>
+      <img
+        class="rounded-lg object-cover w-full max-w-[12rem] h-[12rem]"
+        src="{% static 'images/group-activities.jpg' %}"
+        alt="" />
+    </div>
+  </div>
+</section>
+
+<!-- For Dating Couples -->
+<section class="py-12 bg-white">
+  <div class="text-center mb-8">
+    <h4 class="text-3xl font-bold">For Dating Couples</h4>
+    <p>Keep the romance alive</p>
+  </div>
+
+  <!-- Couples Cards -->
+  <div
+    class="grid grid-cols-1 lg:grid-cols-3 lg:grid-cols-3 gap-14 max-w-6xl mx-auto px-4 place-items-center">
+    <!-- Card 1 -->
+    <div
+      class="flex flex-col items-center p-6 rounded-lg shadow-lg bg-gradient-to-br from-rose-100 via-purple-100 to-sky-100 w-[18rem] md:w-[20-rem]">
+      <p class="text-lg font-semibold">Cooking Classes</p>
+      <img
+        class="rounded-lg object-cover w-full max-w-[12rem] h-[12rem]"
+        src="{% static 'images/cooking-classes.jpg' %}"
+        alt="" />
+    </div>
+
+    <!-- Card 2 -->
+    <div
+      class="flex flex-col items-center p-6 rounded-lg shadow-lg bg-gradient-to-br from-rose-100 via-purple-100 to-sky-100 w-[18rem] md:w-[20-rem]">
+      <p class="text-lg font-semibold">Wine Tasting</p>
+      <img
+        class="rounded-lg object-cover w-full max-w-[12rem] h-[12rem]"
+        src="{% static 'images/wine-tasting.jpg' %}"
+        alt="" />
+    </div>
+
+    <!-- Card 3 -->
+    <div
+      class="flex flex-col items-center p-6 rounded-lg shadow-lg bg-gradient-to-br from-rose-100 via-purple-100 to-sky-100 w-[18rem] md:w-[20-rem]">
+      <p class="text-lg font-semibold">Adventure Days</p>
+      <img
+        class="rounded-lg object-cover w-full max-w-[12rem] h-[12rem]"
+        src="{% static 'images/adventure-days.jpg' %}"
+        alt="" />
+    </div>
+  </div>
+</section>
+
+<!-- For Married Couples -->
+<section
+  class="py-12 bg-gradient-to-br from-rose-100 via-purple-100 to-sky-100">
+  <div class="text-center mb-8">
+    <h4 class="text-3xl font-bold">For Married Couples</h4>
+    <p>Reignite the spark</p>
+  </div>
+
+  <!-- Married Cards -->
+  <div
+    class="grid grid-cols-1 lg:grid-cols-3 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-4 place-items-center">
+    <!-- Card 1 -->
+    <div
+      class="flex flex-col items-center p-6 rounded-lg bg-white shadow-lg w-[18rem] md:w-[20rem]">
+      <p class="text-lg font-semibold">Couples Retreat</p>
+      <img
+        class="rounded-lg object-cover w-full max-w-[12rem] h-[12rem]"
+        src="{% static 'images/couples-retreat.jpg' %}"
+        alt="" />
+    </div>
+
+    <!-- Card 2 -->
+    <div
+      class="flex flex-col items-center p-6 rounded-lg bg-white shadow-lg w-[18rem] md:w-[20rem]">
+      <p class="text-lg font-semibold">Dance Classes</p>
+      <img
+        class="rounded-lg object-cover w-full max-w-[12rem] h-[12rem]"
+        src="{% static 'images/dance-classes.jpg' %}"
+        alt="" />
+    </div>
+
+    <!-- Card 3 -->
+    <div
+      class="flex flex-col items-center p-6 rounded-lg bg-white shadow-lg w-[18rem] md:w-[20rem]">
+      <p class="text-lg font-semibold">Date Night Workshop</p>
+      <img
+        class="rounded-lg object-cover w-full max-w-[12rem] h-[12rem]"
+        src="{% static 'images/dating-workshop.jpg' %}"
+        alt="" />
+    </div>
+  </div>
+</section>
+
 {% endblock %}

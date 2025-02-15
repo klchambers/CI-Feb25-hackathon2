@@ -3,111 +3,392 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
     {% block meta %}
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    {% endblock %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    {% endblock %} {% block extra_meta %} {% endblock %} {% block corecss %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet" />
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      /* Mobile menu animation */
+      .mobile-menu {
+        transition: transform 0.3s ease-in-out;
+      }
+      .mobile-menu.hidden {
+        transform: translateX(-100%);
+      }
+    </style>
+    {% endblock %} {% block extra_css %} {% endblock %} {% block corejs %}
+    <script
+      src="https://kit.fontawesome.com/1390569447.js"
+      crossorigin="anonymous"></script>
+    {% endblock %} {% block extra_js %} {% endblock %}
 
-    {% block extra_meta %}
-    {% endblock %}
+    <title>Dating Events {% block extra_title %}{% endblock %}</title>
+  </head>
 
-    {% block corecss %}
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&display=swap">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="{% static 'css/base.css' %}">
-        <!--Open Sans-->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    {% endblock %}
+  <body class="min-h-screen bg-gray-50">
+    <!-- Animated Background -->
+    <div
+      class="fixed inset-0 bg-gradient-to-br from-rose-100 via-purple-100 to-sky-100 -z-10">
+      <div
+        class="absolute inset-0 opacity-20"
+        style="
+           background-image: url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%229C92AC%22%20fill-opacity%3D%220.4%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6V0H4v4H0v2h4v4h2V6h4V4H6z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+        "></div>
+    </div>
 
-    {% block extra_css %}
-        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
-    {% endblock %}
-
-    {% block corejs %}
-        <script src="https://kit.fontawesome.com/1390569447.js" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <!-- Stripe -->
-         <!--Left stripe in in case we want to implement a subscription model-->
-        <!--<script src="https://js.stripe.com/v3/"></script>-->
-    {% endblock %}
-
-    {% block extra_js %}
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    {% endblock %}
-</head>
-<body>
-  <header class="container-fluid fixed-top">
-      <div id="topnav" class="row pt-lg-2 d-none d-lg-flex">
-          <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
-              <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                  <h2 class="logo-font text-black my-0"><strong>Dating Event App</strong></h2>
+    <!-- Navigation -->
+    <nav class="relative z-20">
+      <div class="glass-effect border-b border-white/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between items-center h-16">
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+              <a
+                href="{% url 'home' %}"
+                class="text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-purple-600">
+                Dating Events
               </a>
-          </div>
-          <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-              <form method="GET" action="{% url 'match-making' %}">
-                  <div class="input-group w-100">
-                      <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search our site">
-                      <div class="input-group-append">
-                          <button class="form-control btn btn-black border border-black rounded-0" type="submit">
-                              <span class="icon">
-                                  <i class="fas fa-search"></i>
-                              </span>
-                          </button>
-                      </div>
-                  </div>
+            </div>
+
+            <!-- Search Bar - Desktop -->
+            <div class="hidden md:block flex-1 max-w-md mx-4">
+              <form
+                method="GET"
+                action="{% url 'match-making' %}"
+                class="relative">
+                <input
+                  type="text"
+                  name="q"
+                  placeholder="Search events..."
+                  class="w-full px-4 py-2 rounded-xl bg-white/50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent" />
+                <button
+                  type="submit"
+                  class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-rose-500">
+                  <i class="fas fa-search"></i>
+                </button>
               </form>
-          </div>
-          <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-              <ul class="list-inline list-unstyled text-center text-lg-right my-0">
-                  <li class="list-inline-item dropdown">
-                      <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <div class="text-center">
-                              <div><i class="fas fa-user fa-lg"></i></div>
-                              <p class="my-0"><strong>My Account</strong></p>
-                          </div>
-                      </a>
-                      <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                          {% if request.user.is_authenticated %}
-                              {% if request.user.is_superuser %}
-                                  <a href="{% url 'add_product' %}" class="dropdown-item">Admin Area</a>
-                              {% endif %}
-                              <a href="{% url 'match-making' %}" class="">Match Making</a>
-                              <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
-                              <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-                          {% else %}
-                              <a href="{% url 'account_signup' %}" class="dropdown-item">Sign Up</a>
-                              <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-                          {% endif %}
-                      </div>
-                  </li>
-                </ul>
+            </div>
 
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-4">
+              {% if request.user.is_authenticated %}
+              <div class="relative group">
+                <button
+                  class="flex items-center space-x-2 text-gray-700 hover:text-rose-600 transition-colors">
+                  <i class="fas fa-user"></i>
+                  <span class="hidden sm:inline">
+                    {{ request.user.username }}
+                  </span>
+                </button>
+                <div
+                  class="absolute right-0 mt-2 w-48 glass-effect rounded-xl shadow-lg py-1 border border-white/20 hidden group-hover:block">
+                  {% if request.user.is_superuser %}
+                  <a
+                    href="{% url 'add_product' %}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600">
+                    Admin Area
+                  </a>
+                  {% endif %}
+                  <a
+                    href="{% url 'match-making' %}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600">
+                    Match Making
+                  </a>
+                  <a
+                    href="{% url 'user_profile' %}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600">
+                    My Profile
+                  </a>
+                  <a
+                    href="{% url 'account_logout' %}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600">
+                    Logout
+                  </a>
+                </div>
+              </div>
+              {% else %}
+              <a
+                href="{% url 'account_login' %}"
+                class="px-4 py-2 text-gray-700 hover:text-rose-600 transition-colors">
+                Login
+              </a>
+              <a
+                href="{% url 'account_signup' %}"
+                class="px-4 py-2 bg-gradient-to-r from-rose-500 to-purple-600 text-white rounded-xl hover:from-rose-600 hover:to-purple-700 transition-all transform hover:scale-[1.02]">
+                Sign Up
+              </a>
+              {% endif %}
+            </div>
+
+            <!-- Mobile menu button -->
+            <div class="md:hidden flex items-center">
+              <button
+                type="button"
+                onclick="toggleMobileMenu()"
+                class="text-gray-700 hover:text-rose-600 p-2">
+                <i class="fas fa-bars text-xl"></i>
+              </button>
+            </div>
           </div>
+
+          <!-- Mobile Search Bar -->
+          <div class="md:hidden py-4">
+            <form
+              method="GET"
+              action="{% url 'match-making' %}"
+              class="relative">
+              <input
+                type="text"
+                name="q"
+                placeholder="Search events..."
+                class="w-full px-4 py-2 rounded-xl bg-white/50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent" />
+              <button
+                type="submit"
+                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-rose-500">
+                <i class="fas fa-search"></i>
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
-  </header>
 
-  {% if messages %}
-  {% endif %}
+      <!-- Mobile Navigation Menu -->
+      <div
+        id="mobileMenu"
+        class="mobile-menu hidden fixed inset-0 z-50 md:hidden">
+        <div
+          class="fixed inset-0 bg-gray-600 bg-opacity-75"
+          onclick="toggleMobileMenu()"></div>
+        <div
+          class="fixed inset-y-0 left-0 w-64 glass-effect transform transition-transform">
+          <div class="h-full flex flex-col py-6 px-4">
+            <div class="flex items-center justify-between mb-8">
+              <span
+                class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-purple-600">
+                Menu
+              </span>
+              <button
+                onclick="toggleMobileMenu()"
+                class="text-gray-700 hover:text-rose-600">
+                <i class="fas fa-times text-xl"></i>
+              </button>
+            </div>
+            {% if request.user.is_authenticated %}
+            <div class="space-y-2">
+              {% if request.user.is_superuser %}
+              <a
+                href="{% url 'add_product' %}"
+                class="block px-4 py-2 text-gray-700 hover:bg-rose-50 hover:text-rose-600 rounded-lg">
+                Admin Area
+              </a>
+              {% endif %}
+              <a
+                href="{% url 'match-making' %}"
+                class="block px-4 py-2 text-gray-700 hover:bg-rose-50 hover:text-rose-600 rounded-lg">
+                Match Making
+              </a>
+              <a
+                href="{% url 'profile' %}"
+                class="block px-4 py-2 text-gray-700 hover:bg-rose-50 hover:text-rose-600 rounded-lg">
+                My Profile
+              </a>
+              <a
+                href="{% url 'account_logout' %}"
+                class="block px-4 py-2 text-gray-700 hover:bg-rose-50 hover:text-rose-600 rounded-lg">
+                Logout
+              </a>
+            </div>
+            {% else %}
+            <div class="space-y-2">
+              <a
+                href="{% url 'account_login' %}"
+                class="block px-4 py-2 text-gray-700 hover:bg-rose-50 hover:text-rose-600 rounded-lg">
+                Login
+              </a>
+              <a
+                href="{% url 'account_signup' %}"
+                class="block px-4 py-2 bg-gradient-to-r from-rose-500 to-purple-600 text-white rounded-lg hover:from-rose-600 hover:to-purple-700">
+                Sign Up
+              </a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </nav>
 
-  {% block page_header %}
-  {% endblock %}
+    <!-- Messages -->
+    {% if messages %}
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+      {% for message in messages %}
+      <div
+        class="glass-effect rounded-xl p-4 mb-4 {% if message.tags %}{{ message.tags }}{% endif %}">
+        {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %} {% block page_header %} {% endblock %}
 
-  {% block content %}
-  {% endblock %}
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {% block content %} {% endblock %}
+    </main>
 
-  {% block footer %}
-{% endblock %}
+    <!-- Footer -->
+    {% block footer %}
+    <footer class="mt-auto">
+  <div class="glass-effect border-t border-white/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        
+        <!-- About Section -->
+        <div>
+          <h3 class="font-semibold text-gray-800 mb-4">About Us</h3>
+          <p class="text-sm text-gray-600">
+            Creating meaningful connections through unique events and experiences.
+          </p>
+          <div class="flex space-x-4 mt-4">
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-rose-600 transition-colors">
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-rose-600 transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-rose-600 transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
 
-  {% block postloadjs %}
-  {% endblock %}
+        <!-- Quick Links -->
+        <div>
+          <h3 class="font-semibold text-gray-800 mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-sm text-gray-600 hover:text-rose-600">Events</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-rose-600">Team Members Page</a></li>
+          </ul>
+        </div>
 
-</body>
+        <!-- Contact Section -->
+        <div>
+          <h3 class="font-semibold text-gray-800 mb-4">Contact</h3>
+          <ul class="space-y-2">
+            <li><a href="#contact-modal" class="text-sm text-gray-600 hover:text-rose-600">Contact</a></li>
+            <li><a href="#faq-modal" class="text-sm text-gray-600 hover:text-rose-600">FAQ</a></li>
+            <li><a href="#safety-tips-modal" class="text-sm text-gray-600 hover:text-rose-600">Safety Tips</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div>
+          <h3 class="font-semibold text-gray-800 mb-4">Stay Updated</h3>
+          <form class="space-y-2">
+            <input type="email" placeholder="Your email" class="w-full px-4 py-2 rounded-xl bg-white/50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent text-sm" />
+            <button type="submit" class="w-full px-4 py-2 bg-gradient-to-r from-rose-500 to-purple-600 text-white rounded-xl hover:from-rose-600 hover:to-purple-700 transition-all text-sm">
+              Subscribe
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="mt-8 pt-8 border-t border-gray-200">
+        <div class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+          <p class="text-sm text-gray-600">
+            &copy; {% now "Y" %} Dating Events. All rights reserved.
+          </p>
+          <p class="text-sm text-gray-600">
+            For Educational Purposes Only.
+          </p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+    {% endblock %} {% block postloadjs %}
+    <!-- Mobile Menu JavaScript -->
+    <script>
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById("mobileMenu");
+        if (mobileMenu.classList.contains("hidden")) {
+          mobileMenu.classList.remove("hidden");
+          document.body.style.overflow = "hidden"; // Prevent scrolling when menu is open
+        } else {
+          mobileMenu.classList.add("hidden");
+          document.body.style.overflow = ""; // Restore scrolling
+        }
+      }
+
+      // Close mobile menu on window resize if screen becomes larger
+      window.addEventListener("resize", function () {
+        if (window.innerWidth >= 768) {
+          // 768px is Tailwind's md breakpoint
+          const mobileMenu = document.getElementById("mobileMenu");
+          if (!mobileMenu.classList.contains("hidden")) {
+            mobileMenu.classList.add("hidden");
+            document.body.style.overflow = "";
+          }
+        }
+      });
+
+      // Handle clicks outside mobile menu to close it
+      document.addEventListener("click", function (event) {
+        const mobileMenu = document.getElementById("mobileMenu");
+        const mobileMenuButton = document.querySelector(
+          '[onclick="toggleMobileMenu()"]'
+        );
+
+        if (
+          !mobileMenu.classList.contains("hidden") &&
+          !mobileMenu.contains(event.target) &&
+          event.target !== mobileMenuButton
+        ) {
+          toggleMobileMenu();
+        }
+      });
+
+      // Initialize dropdown hover states for desktop
+      document.addEventListener("DOMContentLoaded", function () {
+        const dropdowns = document.querySelectorAll(".group");
+
+        dropdowns.forEach((dropdown) => {
+          const menu = dropdown.querySelector(".group-hover\\:block");
+
+          // Handle touch events for mobile/tablet
+          dropdown.addEventListener("touchstart", function (e) {
+            e.preventDefault();
+            dropdowns.forEach((d) => {
+              if (d !== dropdown) {
+                d.querySelector(".group-hover\\:block").classList.add("hidden");
+              }
+            });
+            menu.classList.toggle("hidden");
+          });
+
+          // Close dropdown when clicking outside
+          document.addEventListener("click", function (e) {
+            if (!dropdown.contains(e.target)) {
+              menu.classList.add("hidden");
+            }
+          });
+        });
+      });
+
+    </script>
+    {% endblock %}
+  </body>
 </html>

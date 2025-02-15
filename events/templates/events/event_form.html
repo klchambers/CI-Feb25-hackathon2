@@ -1,0 +1,170 @@
+{# templates/events/event_form.html #}
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="relative z-10 px-4 py-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- Form Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-rose-600 to-purple-600">
+                {% if object %}Edit Event{% else %}Create New Event{% endif %}
+            </h1>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+                {% if object %}
+                    Update your event details below
+                {% else %}
+                    Fill in the details below to create your new event
+                {% endif %}
+            </p>
+        </div>
+
+        <!-- Event Form -->
+        <div class="glass-effect rounded-2xl p-8">
+            <form method="post" enctype="multipart/form-data" class="space-y-6">
+                {% csrf_token %}
+                
+                <!-- Title -->
+                <div class="space-y-2">
+                    <label for="id_title" class="text-sm font-medium text-gray-700">Event Title</label>
+                    <input type="text" name="title" id="id_title" required
+                           {% if object %}value="{{ object.title }}"{% endif %}
+                           class="w-full p-3 rounded-xl border border-gray-200 bg-white/50 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                           placeholder="Enter event title">
+                </div>
+
+                <!-- Category -->
+                <div class="space-y-2">
+                    <label for="id_category" class="text-sm font-medium text-gray-700">Category</label>
+                    <select name="category" id="id_category" required
+                            class="w-full p-3 rounded-xl border border-gray-200 bg-white/50 focus:outline-none focus:ring-2 focus:ring-rose-500">
+                        {% for category in form.category.field.queryset %}
+                            <option value="{{ category.id }}" 
+                                {% if object and object.category_id == category.id %}selected{% endif %}>
+                                {{ category.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Date and Time -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label for="id_date" class="text-sm font-medium text-gray-700">Date and Time</label>
+                        <input type="datetime-local" name="date" id="id_date" required
+                               {% if object %}value="{{ object.date|date:'Y-m-d\TH:i' }}"{% endif %}
+                               class="w-full p-3 rounded-xl border border-gray-200 bg-white/50 focus:outline-none focus:ring-2 focus:ring-rose-500">
+                    </div>
+                    <div class="space-y-2">
+                        <label for="id_duration" class="text-sm font-medium text-gray-700">Duration (hours)</label>
+                        <input type="number" name="duration" id="id_duration" required min="0.5" step="0.5"
+                               {% if object %}value="{{ object.duration.total_seconds|divided_by:3600 }}"{% endif %}
+                               class="w-full p-3 rounded-xl border border-gray-200 bg-white/50 focus:outline-none focus:ring-2 focus:ring-rose-500">
+                    </div>
+                </div>
+
+                <!-- Location Details -->
+                <div class="space-y-6">
+                    <div class="space-y-2">
+                        <label for="id_location_name" class="text-sm font-medium text-gray-700">Venue Name</label>
+                        <input type="text" name="location_name" id="id_location_name" required
+                               {% if object %}value="{{ object.location_name }}"{% endif %}
+                               class="w-full p-3 rounded-xl border border-gray-200 bg-white/50 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                               placeholder="Enter venue name">
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <label for="id_address" class="text-sm font-medium text-gray-700">Address</label>
+                        <textarea name="address" id="id_address" required rows="2"
+                                  class="w-full p-3 rounded-xl border border-gray-200 bg-white/50 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                                  placeholder="Enter street address">{% if object %}{{ object.address }}{% endif %}</textarea>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="space-y-2">
+                            <label for="id_city" class="text-sm font-medium text-gray-700">City</label>
+                            <input type="text" name="city" id="id_city" required
+                                   {% if object %}value="{{ object.city }}"{% endif %}
+                                   class="w-full p-3 rounded-xl border border-gray-200 bg-white/50 focus:outline-none focus:ring-2 focus:ring-rose-500">
+                        </div>
+                        <div class="space-y-2">
+                            <label for="id_state" class="text-sm font-medium text-gray-700">State/Region</label>
+                            <input type="text" name="state" id="id_state"
+                                   {% if object %}value="{{ object.state }}"{% endif %}
+                                   class="w-full p-3 rounded-xl border border-gray-200 bg-white/50 focus:outline-none focus:ring-2 focus:ring-rose-500">
+                        </div>
+                        <div class="space-y-2">
+                            <label for="id_zip_code" class="text-sm font-medium text-gray-700">Postal Code</label>
+                            <input type="text" name="zip_code" id="id_zip_code" required
+                                   {% if object %}value="{{ object.zip_code }}"{% endif %}
+                                   class="w-full p-3 rounded-xl border border-gray-200 bg-white/50 focus:outline-none focus:ring-2 focus:ring-rose-500">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Details -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label for="id_price" class="text-sm font-medium text-gray-700">Price</label>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">£</span>
+                            <input type="number" name="price" id="id_price" required min="0" step="0.01"
+                                   {% if object %}value="{{ object.price }}"{% endif %}
+                                   class="w-full p-3 pl-8 rounded-xl border border-gray-200 bg-white/50 focus:outline-none focus:ring-2 focus:ring-rose-500">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label for="id_capacity" class="text-sm font-medium text-gray-700">Capacity</label>
+                        <input type="number" name="capacity" id="id_capacity" required min="1"
+                               {% if object %}value="{{ object.capacity }}"{% endif %}
+                               class="w-full p-3 rounded-xl border border-gray-200 bg-white/50 focus:outline-none focus:ring-2 focus:ring-rose-500">
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="space-y-2">
+                    <label for="id_description" class="text-sm font-medium text-gray-700">Description</label>
+                    <textarea name="description" id="id_description" required rows="5"
+                              class="w-full p-3 rounded-xl border border-gray-200 bg-white/50 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                              placeholder="Describe your event">{% if object %}{{ object.description }}{% endif %}</textarea>
+                </div>
+
+                <!-- Image Upload -->
+                <div class="space-y-2">
+                    <label for="id_image" class="text-sm font-medium text-gray-700">Event Image</label>
+                    <input type="file" name="image" id="id_image" accept="image/*"
+                           class="w-full p-3 rounded-xl border border-gray-200 bg-white/50 focus:outline-none focus:ring-2 focus:ring-rose-500">
+                    {% if object and object.image %}
+                        <p class="text-sm text-gray-600">Current image: {{ object.image.name }}</p>
+                    {% endif %}
+                </div>
+
+                {% if can_edit %}
+                <div class="flex justify-end space-x-4 mb-6">
+                    <a href="{% url 'events:event_update' event.slug %}" 
+                    class="px-4 py-2 border border-gray-200 text-gray-700 rounded-xl hover:bg-gray-50 transition-all">
+                        Edit Event
+                    </a>
+                    <a href="{% url 'events:event_delete' event.slug %}" 
+                    class="px-4 py-2 bg-rose-500 text-white rounded-xl hover:bg-rose-600 transition-all">
+                        Delete Event
+                    </a>
+                </div>
+                {% endif %}
+                <!-- Submit Button -->
+                <div class="flex justify-end space-x-4">
+                    <a href="{% url 'events:event_list' %}" 
+                       class="px-6 py-3 border border-gray-200 text-gray-700 rounded-xl hover:bg-gray-50 transition-all">
+                        Cancel
+                    </a>
+                    <button type="submit" 
+                            class="px-6 py-3 bg-gradient-to-r from-rose-500 to-purple-600 text-white rounded-xl 
+                                   hover:from-rose-600 hover:to-purple-700 transition-all transform hover:scale-[1.02]">
+                        {% if object %}Update Event{% else %}Create Event{% endif %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,76 @@
+{# templates/events/includes/event_filters.html #}
+<div class="glass-effect mt-8 p-6 rounded-2xl">
+    <form method="get" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Event Type Filter -->
+        <div class="space-y-2">
+            <label class="text-sm font-medium text-gray-700">Event Type</label>
+            <select name="category" class="w-full p-3 rounded-xl bg-white/50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                <option value="">All Event Types</option>
+                {% for category in categories %}
+                    <option value="{{ category.slug }}" {% if request.GET.category == category.slug %}selected{% endif %}>
+                        {{ category.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Enhanced Date Filter -->
+        <div class="space-y-2">
+            <label class="text-sm font-medium text-gray-700">When</label>
+            <select name="date_filter" class="w-full p-3 rounded-xl bg-white/50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                <option value="">Any Time</option>
+                <option value="today" {% if request.GET.date_filter == 'today' %}selected{% endif %}>Today</option>
+                <option value="this_week" {% if request.GET.date_filter == 'this_week' %}selected{% endif %}>This Week</option>
+                <option value="this_weekend" {% if request.GET.date_filter == 'this_weekend' %}selected{% endif %}>This Weekend</option>
+                <option value="this_month" {% if request.GET.date_filter == 'this_month' %}selected{% endif %}>This Month</option>
+                <option value="next_month" {% if request.GET.date_filter == 'next_month' %}selected{% endif %}>Next Month</option>
+                <option value="three_months" {% if request.GET.date_filter == 'three_months' %}selected{% endif %}>Next 3 Months</option>
+            </select>
+        </div>
+
+        <!-- Enhanced Location Filter -->
+        <div class="space-y-2">
+            <label class="text-sm font-medium text-gray-700">Where</label>
+            <input type="text" 
+                   name="location" 
+                   value="{{ request.GET.location|default:'' }}"
+                   placeholder="Enter location or postcode" 
+                   class="w-full p-3 rounded-xl bg-white/50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <p class="text-xs text-gray-500 ml-1">Search by city, postcode, or venue name</p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="md:col-span-3 flex justify-end mt-4">
+            <button type="submit" 
+                    class="px-6 py-2 bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-xl 
+                           hover:from-purple-600 hover:to-indigo-700 transition-all transform hover:scale-[1.02]">
+                Apply Filters
+            </button>
+            {% if request.GET %}
+                <a href="{% url 'events:event_list' %}" 
+                   class="ml-4 px-6 py-2 border border-gray-200 text-gray-700 rounded-xl 
+                          hover:bg-gray-50 transition-all">
+                    Clear Filters
+                </a>
+            {% endif %}
+        </div>
+    </form>
+</div>
+
+<!-- No Results Message -->
+{% if events|length == 0 %}
+<div class="mt-12">
+    <div class="glass-effect rounded-2xl p-8 text-center">
+        <h3 class="text-xl font-semibold text-gray-700 mb-4">No events found for your search</h3>
+        <p class="text-gray-600 mb-8">We couldn't find any events matching your current filters. Here are some other events you might like:</p>
+        
+        {% if suggested_events %}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            {% for event in suggested_events %}
+                {% include 'events/includes/event_card.html' with event=event %}
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
