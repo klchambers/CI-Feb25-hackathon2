@@ -125,13 +125,19 @@ class EventUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     fields = ['title', 'description', 'category', 'date', 'duration', 
               'location_name', 'address', 'city', 'state', 'zip_code', 
               'price', 'capacity', 'image']
-    
+
     def test_func(self):
         event = self.get_object()
         return event.is_editable_by(self.request.user)
-    
+
     def get_success_url(self):
         return reverse_lazy('events:event_detail', kwargs={'slug': self.object.slug})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        event = self.object
+        context['duration_in_hours'] = event.duration.total_seconds() / 3600 if event.duration else 1
+        return context
 
 class EventDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Event
