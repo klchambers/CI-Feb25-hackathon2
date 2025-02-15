@@ -1,25 +1,28 @@
-# Feb25-hackathon
+# Love.exe - February Hackathon 2025
 
-This project is a dating events app where you can select events around the uk to book and join. 
 
-# UX
+The site can be accessed [here](https://dating-events-app-512687071453.herokuapp.com/). 
 
-## Wireframes
+## Goal
+Build a dating app with a focus on connections and inclusivity
 
-## Home Page
-![Home Page](image-1.png)
+## Judging Criteria
+### Innovation/Creativity (is the app unique in comparison to others alrady out there?)
+- We believe that our app is unique as it includes all kinds of couple. If you're married and looking for a date night or simply looking for a friend to walk your dog with, you can find it at 'Git a Date''.
+### UI/UX (is the app intuitive, visually appealing and easy to navigate?)
+- We love the look and feel of our site. The soft tones and intuitive design make finding your perfect date night easy! 
+### Functionality (does the app function as intended?)
+- 
+### Social impact (does the app address critical issues like inclusivity, safety or accessibility?)
+- Here at PROJECT TBC, it doesn't matter who are you or who you love, you're welcome here. With a moderation system amdeasy to navigate filters including LGBTQA+ and neurodiversity, we want PROJECT TBC to be a safe space for everyone. 
+### Documentation (is the project well planned out?)
+- Continue reading to find out! 
 
-## Login Page
-![Login Page](image-2.png)
+## Problem Statement
+People spend a lot of time online and aren't sure where to go to seek connection. Ctrl+Alt+Date wants to take people out of the online world and allow them to interact in real life - singles seeking singles; dating or married couples; platonic relationships - find your place at Dating Events.
 
-## Events Page
-![Login Page](image-3.png)
-
-## Event Detail Page
-![Event Detail Page](image-4.png)
-
-## User Stories
-
+## UX
+### User stories
 - As a user, when I go on the website it should be clear what the website is about and its purpose, so that that I know whether to I want to view the website or not.
 - As a user, I should be able to register for an account, so I am able to sign in and book events that I want to go to.
 - As a user, I should be able to log in to the app so I am able to register and book for events to go to.
@@ -37,53 +40,76 @@ This project is a dating events app where you can select events around the uk to
 - Python
 - Django
 
-# Features
+### Design
+#### Colour scheme
+#### Typography
 
-# Deployment
+### WireFrames
+#### Home Page
+![alt text](image.png)
 
-Go to Heroku.com and implement the following steps in this order:
+#### Events Filter Page
+![alt text](image-1.png)
 
-1. On the home page, click 'New' and in the dropdown, click on 'Create a new app'.
-2. Add app name (This name must be unique, and have all lower case letters. Also use minus/dash signs instead of spaces.)
-3. Select Region (Select the most relevant region, mine is Europe)
-4. Click the button that says 'Create App'.
-5. Click on the Deploy tab near the top of the screen.
-6. Where is says Deployment Method click on Github.
-7. Below that, search for your repo name and add that.
-8. Click connect to the app.
+#### Simple Events list page
+![alt text](image-3.png)
 
-Before clicking below on enable automatic deployment do the following:
+#### Events Details
+![alt text](image-4.png)
 
-1. Click on the settings tab
-2. Click on reveal config vars.
-3. Add in your variables from your env. files as key value pairs. 
-4. Go back and click on the Deploy tab.
+#### Login Page
+![alt text](image-2.png)
 
-Before the app can be connected, push the following new files below to the repository. Go back in the terminal in your coding environment and add the following:
+This project is a dating events app where you can select events around the uk to book and join. 
 
-1. git status
-2. git add requirements.txt
-3. git commit -m "Add requirements.txt file"
-4. git add Procfile (web: gunicorn dating-event-app.wsgi:application)
-5. git commit -m "Add Procfile"
-6. git push
+## Accessibility
 
-Head back over to Heroku where the Deploy tab is.
+## Responsiveness
 
-1. Click 'Enable Automatic Deploys'
-2. Click Deploy Branch. (Should be a main or master branch)
-Heroku will receive code from Github and build app with the required packages. Hopefully once done the 'App has successfully been deployed message below' will appear. 
-3. Click 'View' to launch the new app. 
-The deployed link of the app is http://dating-events-app-512687071453.herokuapp.com/
+## Features
 
-# Credits
+## Deployment
+- The website was deployed to Heroku and can be found [here](https://dating-events-app-512687071453.herokuapp.com/).
+Heroku
+- Heroku is a cloud platform that lets developers create, deploy, monitor and manage apps.
+- You will need a Heroku log-in to be able to deploy a website to Heroku.
+- Once you have logged into Heroku:
+- Click 'New' > 'Create new app'
+- Choose a unique name, choose your region and press 'Create app'
+- Click on 'Settings' and then 'Reveal Config Vars'
+- Add a key of 'DISABLE_COLLECTSTATIC' with a value of '1'.
+- Add a key of 'DATABASE_URL' - the value will be the URL you were emailed when creating your database.
+- Add a key of 'SECRET_KEY' - the value will be any random secret key (google 'secret key generator' and use it to generate a random string of numbers, letters and characters)
+- In your terminal, type the code you will need to install project requirements:
+pip3 install gunicorn~=20.1
+pip3 install -r requirements.txt
+pip3 freeze --local > requirements.txt
+- Create an 'env.py' file at the root directory which contains the following:
+import os
+os.environ["DATABASE_URL"]='CI database URL'
+os.environ["SECRET_KEY"]=" Your secret key"
+- Create a file at the root directory called Procfile. In this file enter: "web: gunicorn my_project.wsgi" (without the quotes)
+- In settings.py, set DEBUG to False.
+- YOU SHOULD ALWAYS SET DEBUG TO FALSE BEFORE DEPLOYING FOR SECURITY
+- Add ",'.herokuapp.com' " (without the double quotes) to the ALLOWED_HOSTS list in settings.py
+- Add, commit and push your code.
+- Go back to Heroku, click on the 'Deploy' tab.
+- Connect your project to GitHub.
+- Scroll to the bottom and click 'Deploy Branch' and your project will be deployed!
 
-# Acknowledgements
+## Tech used
+- HTML
+- CSS
+- Tailwind
+- Django
 
-- Hannah: Scrum Master, Agile, and assisting in other odd tasks where needed
-- Lochy: Design and frontend for the events page
-- Finnbarr: Content for the events pages
-- Anthony: Home/About Pages
-- Denes: Database and Authentication 
-- Kieran: Contact/FAQ pages
-- Emma: Team Members Page and assisting in other odd tasks where needed.
+## Credits
+
+## Ctrl+Alt+Date: our team!
+- Hannah Olbrich (Scrum Master/Front-end) [GitHub](https://github.com/hannahro15) [LinkedIn](https://www.linkedin.com/in/hannaholbrich/)
+- Anthony Nelson (Front-end) [GitHub](https://github.com/anthonyjn08) [LinkedIn](https://www.linkedin.com/in/anthony-nelson8/)
+- Dènes Kálnoky (Back-end) [GitHub](https://github.com/DFCMK) [LinkedIn](https://www.linkedin.com/in/denes-kalnoky-2306a1346/)
+- Emma Lamont (Documentation/Presentation) [GitHub](https://github.com/elamont174) [LinkedIn](https://www.linkedin.com/in/emma-lamont/)
+- Finnbarr Ambrose (Content/Front-end) [GitHub](https://github.com/FinnbarrAmbrose) [LinkedIn](https://www.linkedin.com/in/finnbarr-ambrose-5682221b4/)
+- Kieran Chambers (Front-end) [GitHub](https://github.com/klchambers) [LinkedIn](https://www.linkedin.com/in/kieranchamberskc/)
+- Lochlann O'Higgins Theilmann (Design/Front-end) [GitHub](https://github.com/Lochy2000) [LinkedIn](https://www.linkedin.com/in/lochlann-ohiggins-developer/)

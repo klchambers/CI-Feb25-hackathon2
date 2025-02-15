@@ -7,3 +7,4 @@ node_modules/
 cloudinary_python.txt
 db.sqlite3
 /staticfiles/
+.DS_Store
