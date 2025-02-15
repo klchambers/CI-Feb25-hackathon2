@@ -1,25 +1,42 @@
 {% extends "account/base.html" %}
-
 {% load i18n %}
 
 {% block head_title %}{% trans "Sign Out" %}{% endblock %}
 
 {% block inner_content %}
-<hr>
-<h2 class="logo-font mb-4">{% trans "Sign Out" %}</h2>
-<hr>
-<p>{% trans 'Are you sure you want to sign out?' %}</p>
+<div class="relative z-10 px-4 py-8">
+    <div class="max-w-lg mx-auto text-center">
+        <div class="glass-effect rounded-2xl p-8 shadow-lg">
+            <hr class="mb-4">
+            <h2 class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-rose-600 to-purple-600">
+                {% trans "Sign Out" %}
+            </h2>
+            <hr class="mb-6">
 
-<form method="post" action="{% url 'account_logout' %}">
-  {% csrf_token %}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-  {% endif %}
-  <a class="btn btn-outline-black rounded-0" href="{% url 'home' %}">Cancel</a>
-  <button type="submit">{% trans 'Sign Out' %}</button>
-</form>
+            <p class="text-gray-700 mb-6">{% trans 'Are you sure you want to sign out?' %}</p>
 
+            <form method="post" action="{% url 'account_logout' %}" class="space-y-4">
+                {% csrf_token %}
+                
+                {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                {% endif %}
 
+                <div class="flex justify-center space-x-4">
+                    <a href="{% url 'home' %}" 
+                       class="px-6 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-100 transition-all">
+                        {% trans "Cancel" %}
+                    </a>
+                    <button type="submit" 
+                            class="px-6 py-3 bg-gradient-to-r from-red-500 to-rose-600 text-white rounded-xl 
+                                   hover:from-red-600 hover:to-rose-700 transition-all transform hover:scale-[1.02]">
+                        {% trans "Sign Out" %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block footer_class %}

@@ -11,7 +11,7 @@
                 {% if event.image %}
                     <img src="{{ event.image.url }}" alt="{{ event.title }}" class="w-full h-full object-cover">
                 {% else %}
-                    <img src="/api/placeholder/800/400" alt="{{ event.title }}" class="w-full h-full object-cover">
+                    <img src="{% static 'images/default-event.jpg' %}" alt="{{ event.title }}" class="w-full h-full object-cover">
                 {% endif %}
                 <div class="absolute top-4 right-4">
                     <span class="bg-purple-500 text-white px-4 py-1 rounded-full text-sm">
@@ -22,6 +22,20 @@
             
             <div class="p-8">
                 <h1 class="text-3xl font-bold mb-4">{{ event.title }}</h1>
+
+                <!-- Show Edit/Delete Options for Event Owner -->
+                {% if user.is_authenticated and user == event.created_by %}
+                    <div class="mb-6 flex space-x-4">
+                        <a href="{% url 'events:event_update' event.slug %}"
+                           class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all">
+                            Edit Event
+                        </a>
+                        <a href="{% url 'events:event_delete' event.slug %}"
+                           class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all">
+                            Delete Event
+                        </a>
+                    </div>
+                {% endif %}
                 
                 <!-- Event Details -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">

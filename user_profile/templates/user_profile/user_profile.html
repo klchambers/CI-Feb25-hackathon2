@@ -13,7 +13,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="pt-20 px-8 pb-8">
                 <div class="flex justify-between items-start">
                     <div>
@@ -30,7 +30,9 @@
         <!-- Profile Info -->
         <div class="glass-effect rounded-2xl p-6">
             <h2 class="text-xl font-semibold mb-6">Profile Information</h2>
-            <div class="space-y-4">
+
+            <form method="post" class="space-y-4">
+                {% csrf_token %}
                 <div>
                     <label class="text-sm text-gray-500">Username</label>
                     <p class="text-gray-700">{{ user.username }}</p>
@@ -41,13 +43,16 @@
                 </div>
                 <div>
                     <label class="text-sm text-gray-500">Location</label>
-                    <p class="text-gray-700">{{ user.profile.location|default:"Not specified" }}</p>
+                    {{ form.location }}
                 </div>
                 <div>
                     <label class="text-sm text-gray-500">Bio</label>
-                    <p class="text-gray-700">{{ user.profile.bio|default:"Tell us about yourself" }}</p>
+                    {{ form.bio }}
                 </div>
-            </div>
+                <button type="submit" class="mt-4 px-6 py-3 bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-xl">
+                    Save Changes
+                </button>
+            </form>
         </div>
     </div>
 </div>
