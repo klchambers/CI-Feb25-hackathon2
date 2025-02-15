@@ -16,7 +16,6 @@ import dj_database_url
 if os.path.isfile('env.py'):
     import env
 
-
 # Added as temporary workaround of the: 
 # AttributeError: 'BlankChoiceIterator' object has no attribute '__len__' "
 
@@ -34,9 +33,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', '')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True
 
 ALLOWED_HOSTS = [
@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
     #'allauth.socialaccount.providers.google',
     #'allauth.socialaccount.providers.facebook',
     'home',
@@ -76,6 +77,16 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'storages',
 ]
+
+# AllAuth Configuration
+ACCOUNT_LOGIN_METHODS = {'username'}  
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
