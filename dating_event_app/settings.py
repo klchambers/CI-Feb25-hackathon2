@@ -16,11 +16,6 @@ import dj_database_url
 if os.path.isfile('env.py'):
     import env
 
-from dotenv import load_dotenv
-from urllib.parse import urlparse
-
-load_dotenv()
-
 
 # Added as temporary workaround of the: 
 # AttributeError: 'BlankChoiceIterator' object has no attribute '__len__' "
