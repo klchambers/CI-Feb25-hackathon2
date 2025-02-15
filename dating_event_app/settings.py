@@ -13,10 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
-from dotenv import load_dotenv
-
-# Load environment variables from .env file
-load_dotenv()
+if os.path.isfile('env.py'):
+    import env
 
 # Added as temporary workaround of the: 
 # AttributeError: 'BlankChoiceIterator' object has no attribute '__len__' "
