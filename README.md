@@ -6,6 +6,18 @@ This project is a dating events app where you can select events around the uk to
 
 ## Wireframes
 
+## Home Page
+![Home Page](image-1.png)
+
+## Login Page
+![Login Page](image-2.png)
+
+## Events Page
+![Login Page](image-3.png)
+
+## Event Detail Page
+![Event Detail Page](image-4.png)
+
 ## User Stories
 
 - As a user, when I go on the website it should be clear what the website is about and its purpose, so that that I know whether to I want to view the website or not.
