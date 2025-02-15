@@ -43,10 +43,11 @@ ALLOWED_HOSTS = [
     'dating-events-app-512687071453.herokuapp.com',
     'localhost',
     '127.0.0.1',
+    '8000',
     ]
 
 # Add deployed project links here
-CSRF_TRUSTED_ORIGINS = []
+CSRF_TRUSTED_ORIGINS = ['https://dating-events-app-512687071453.herokuapp.com']
 
 
 
@@ -68,6 +69,7 @@ INSTALLED_APPS = [
     'main',
     'user_profile',
     'events',
+    'contact',
 
     # other
     'crispy_forms',

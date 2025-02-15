@@ -30,6 +30,14 @@ Build a dating app with a focus on connections and inclusivity
 - As a user, I expect the app to be responsive on a range of devices, so I am able to view the app on differeent devices.
 - As an admin, I should be able to create, read, edit, and delete events so I can keep the platform updated with the most relevant events.
 
+# Technologies used
+- HTML
+- CSS
+- Tailwind CSS
+- Javascript
+- Python
+- Django
+
 ### Design
 #### Colour scheme
 #### Typography
@@ -80,3 +88,12 @@ This project is a dating events app where you can select events around the uk to
 - Kieran Chambers [GitHub]() [LinkedIn]()
 - Lochlann O'Higgins Theilmann [GitHub]() [LinkedIn]()
 
+# Acknowledgements
+
+- Hannah: Scrum Master, Agile, and assisting in other odd tasks where needed
+- Lochy: Design and frontend for the events page
+- Finnbarr: Content for the events pages
+- Anthony: Home/About Pages
+- Denes: Database and Authentication 
+- Kieran: Contact/FAQ pages
+- Emma: Team Members Page and assisting in other odd tasks where needed.
