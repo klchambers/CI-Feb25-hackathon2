@@ -1,6 +1,6 @@
 # Love.exe - February Hackathon 2025
 
-
+![home screenshot](home.png)
 The site can be accessed [here](https://dating-events-app-512687071453.herokuapp.com/). 
 
 ## Goal
@@ -8,13 +8,13 @@ Build a dating app with a focus on connections and inclusivity
 
 ## Judging Criteria
 ### Innovation/Creativity (is the app unique in comparison to others alrady out there?)
-- We believe that our app is unique as it includes all kinds of couple. If you're married and looking for a date night or simply looking for a friend to walk your dog with, you can find it at 'Git a Date''.
+- We believe that our app is unique as it includes all kinds of couple. If you're married and looking for a date night or simply looking for a friend to walk your dog with, you can find it at 'Dating Events'.
 ### UI/UX (is the app intuitive, visually appealing and easy to navigate?)
 - We love the look and feel of our site. The soft tones and intuitive design make finding your perfect date night easy! 
 ### Functionality (does the app function as intended?)
 - 
 ### Social impact (does the app address critical issues like inclusivity, safety or accessibility?)
-- Here at PROJECT TBC, it doesn't matter who are you or who you love, you're welcome here. With a moderation system amdeasy to navigate filters including LGBTQA+ and neurodiversity, we want PROJECT TBC to be a safe space for everyone. 
+- Here at Dating Events, it doesn't matter who are you or who you love, you're welcome here. With a moderation system amdeasy to navigate filters including LGBTQA+ and neurodiversity, we want Dating Events to be a safe space for everyone. 
 ### Documentation (is the project well planned out?)
 - Continue reading to find out! 
 
@@ -32,17 +32,16 @@ People spend a lot of time online and aren't sure where to go to seek connection
 - As a user, I expect the app to be responsive on a range of devices, so I am able to view the app on differeent devices.
 - As an admin, I should be able to create, read, edit, and delete events so I can keep the platform updated with the most relevant events.
 
-# Technologies used
-- HTML
-- CSS
-- Tailwind CSS
-- Javascript
-- Python
-- Django
-
 ### Design
 #### Colour scheme
+- Soft colours in a pink/purple hue were used as these colours tend to be associated with love and relationships. A gradient was used to be remniscient of existing social media which would feel familiar to users and therefore inspire trust. 
+- Clear contrasting colours were used for font for accessibility and visibility.
+- ![gradient font](dating-events.png)
+- ![colour scheme](colour-scheme.png)
 #### Typography
+- Sans serif fonts are considered to be the clearest fonts to read by those with additional support needs such as dyslexia and autism therefore only sans serif fonts were considered for accessibility reasons. 
+- Jakarta was chosen for it's crisp and clean feel which fit in with the vibe of the site whilst still being easy to read. 
+![font](jakarta.png)
 
 ### WireFrames
 #### Home Page
@@ -65,6 +64,7 @@ This project is a dating events app where you can select events around the uk to
 ## Accessibility
 
 ## Responsiveness
+
 
 ## Features
 
@@ -97,10 +97,12 @@ os.environ["SECRET_KEY"]=" Your secret key"
 - Connect your project to GitHub.
 - Scroll to the bottom and click 'Deploy Branch' and your project will be deployed!
 
-## Tech used
+# Technologies used
 - HTML
 - CSS
-- Tailwind
+- Tailwind CSS
+- Javascript
+- Python
 - Django
 
 ## Credits
