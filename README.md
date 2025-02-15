@@ -1,13 +1,16 @@
 # Love.exe - February Hackathon 2025
 
+
+The site can be accessed [here](https://dating-events-app-512687071453.herokuapp.com/). 
+
 ## Goal
 Build a dating app with a focus on connections and inclusivity
 
 ## Judging Criteria
 ### Innovation/Creativity (is the app unique in comparison to others alrady out there?)
-- We believe that our app is unique as it includes all kinds of couple. If you're married and looking for a date night or simply looking for a friend to walk your dog with, you can find it at PROJECT TBC.
+- We believe that our app is unique as it includes all kinds of couple. If you're married and looking for a date night or simply looking for a friend to walk your dog with, you can find it at 'Git a Date''.
 ### UI/UX (is the app intuitive, visually appealing and easy to navigate?)
-- 
+- We love the look and feel of our site. The soft tones and intuitive design make finding your perfect date night easy! 
 ### Functionality (does the app function as intended?)
 - 
 ### Social impact (does the app address critical issues like inclusivity, safety or accessibility?)
@@ -15,9 +18,8 @@ Build a dating app with a focus on connections and inclusivity
 ### Documentation (is the project well planned out?)
 - Continue reading to find out! 
 
-## Introduction
-
-### Problem Statement
+## Problem Statement
+People spend a lot of time online and aren't sure where to go to seek connection. Ctrl+Alt+Date wants to take people out of the online world and allow them to interact in real life - singles seeking singles; dating or married couples; platonic relationships - find your place at Dating Events.
 
 ## UX
 ### User stories
@@ -43,7 +45,6 @@ Build a dating app with a focus on connections and inclusivity
 #### Typography
 
 ### WireFrames
-
 #### Home Page
 ![alt text](image.png)
 
@@ -54,11 +55,9 @@ Build a dating app with a focus on connections and inclusivity
 ![alt text](image-3.png)
 
 #### Events Details
-
 ![alt text](image-4.png)
 
 #### Login Page
-
 ![alt text](image-2.png)
 
 This project is a dating events app where you can select events around the uk to book and join. 
@@ -70,6 +69,33 @@ This project is a dating events app where you can select events around the uk to
 ## Features
 
 ## Deployment
+- The website was deployed to Heroku and can be found [here](https://dating-events-app-512687071453.herokuapp.com/).
+Heroku
+- Heroku is a cloud platform that lets developers create, deploy, monitor and manage apps.
+- You will need a Heroku log-in to be able to deploy a website to Heroku.
+- Once you have logged into Heroku:
+- Click 'New' > 'Create new app'
+- Choose a unique name, choose your region and press 'Create app'
+- Click on 'Settings' and then 'Reveal Config Vars'
+- Add a key of 'DISABLE_COLLECTSTATIC' with a value of '1'.
+- Add a key of 'DATABASE_URL' - the value will be the URL you were emailed when creating your database.
+- Add a key of 'SECRET_KEY' - the value will be any random secret key (google 'secret key generator' and use it to generate a random string of numbers, letters and characters)
+- In your terminal, type the code you will need to install project requirements:
+pip3 install gunicorn~=20.1
+pip3 install -r requirements.txt
+pip3 freeze --local > requirements.txt
+- Create an 'env.py' file at the root directory which contains the following:
+import os
+os.environ["DATABASE_URL"]='CI database URL'
+os.environ["SECRET_KEY"]=" Your secret key"
+- Create a file at the root directory called Procfile. In this file enter: "web: gunicorn my_project.wsgi" (without the quotes)
+- In settings.py, set DEBUG to False.
+- YOU SHOULD ALWAYS SET DEBUG TO FALSE BEFORE DEPLOYING FOR SECURITY
+- Add ",'.herokuapp.com' " (without the double quotes) to the ALLOWED_HOSTS list in settings.py
+- Add, commit and push your code.
+- Go back to Heroku, click on the 'Deploy' tab.
+- Connect your project to GitHub.
+- Scroll to the bottom and click 'Deploy Branch' and your project will be deployed!
 
 ## Tech used
 - HTML
@@ -80,20 +106,10 @@ This project is a dating events app where you can select events around the uk to
 ## Credits
 
 ## Ctrl+Alt+Date: our team!
-- Anthony Nelson [GitHub](https://github.com/anthonyjn08) [LinkedIn](https://www.linkedin.com/in/anthony-nelson8/)
-- Dènes Kálnoky [GitHub]() [LinkedIn]()
-- Emma Lamont [GitHub](https://github.com/elamont174) [LinkedIn](https://www.linkedin.com/in/emma-lamont/)
-- Finnbarr Ambrose [GitHub]() [LinkedIn]()
--  Hannah Olbrich [GitHub](https://github.com/hannahro15) [LinkedIn](https://www.linkedin.com/in/hannaholbrich/)
-- Kieran Chambers [GitHub]() [LinkedIn]()
-- Lochlann O'Higgins Theilmann [GitHub]() [LinkedIn]()
-
-# Acknowledgements
-
-- Hannah: Scrum Master, Agile, and assisting in other odd tasks where needed
-- Lochy: Design and frontend for the events page
-- Finnbarr: Content for the events pages
-- Anthony: Home/About Pages
-- Denes: Database and Authentication 
-- Kieran: Contact/FAQ pages
-- Emma: Team Members Page and assisting in other odd tasks where needed.
+- Hannah Olbrich (Scrum Master/Front-end) [GitHub](https://github.com/hannahro15) [LinkedIn](https://www.linkedin.com/in/hannaholbrich/)
+- Anthony Nelson (Front-end) [GitHub](https://github.com/anthonyjn08) [LinkedIn](https://www.linkedin.com/in/anthony-nelson8/)
+- Dènes Kálnoky (Back-end) [GitHub](https://github.com/DFCMK) [LinkedIn](https://www.linkedin.com/in/denes-kalnoky-2306a1346/)
+- Emma Lamont (Documentation/Presentation) [GitHub](https://github.com/elamont174) [LinkedIn](https://www.linkedin.com/in/emma-lamont/)
+- Finnbarr Ambrose (Content/Front-end) [GitHub](https://github.com/FinnbarrAmbrose) [LinkedIn](https://www.linkedin.com/in/finnbarr-ambrose-5682221b4/)
+- Kieran Chambers (Front-end) [GitHub](https://github.com/klchambers) [LinkedIn](https://www.linkedin.com/in/kieranchamberskc/)
+- Lochlann O'Higgins Theilmann (Design/Front-end) [GitHub](https://github.com/Lochy2000) [LinkedIn](https://www.linkedin.com/in/lochlann-ohiggins-developer/)
