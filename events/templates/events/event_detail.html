@@ -8,16 +8,12 @@
         <!-- Event Header -->
         <div class="glass-effect rounded-2xl overflow-hidden">
             <div class="relative h-64">
-                {% if event.image %}
+                {% if event.image and event.image.url %}
                     <img src="{{ event.image.url }}" alt="{{ event.title }}" class="w-full h-full object-cover">
                 {% else %}
-                    <img src="{% static 'images/default-event.jpg' %}" alt="{{ event.title }}" class="w-full h-full object-cover">
+                    <img src="https://res.cloudinary.com/{{ CLOUDINARY_CLOUD_NAME }}/image/upload/v1/default_post_o0lbny" 
+                         alt="{{ event.title }}" class="w-full h-full object-cover">
                 {% endif %}
-                <div class="absolute top-4 right-4">
-                    <span class="bg-purple-500 text-white px-4 py-1 rounded-full text-sm">
-                        {{ event.category.name }}
-                    </span>
-                </div>
             </div>
             
             <div class="p-8">
