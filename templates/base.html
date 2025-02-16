@@ -96,7 +96,7 @@
                     Admin Area
                   </a>
                   {% endif %}
-                  <a href="" class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600">My Profile</a>
+                  <a href="{% url 'user_profile:profile' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600">My Profile</a>
                   <a href="{% url 'account_logout' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600">Logout</a>
                 </div>
               </div>
