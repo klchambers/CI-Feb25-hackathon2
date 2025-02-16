@@ -96,6 +96,9 @@ This project is a dating events app where you can select events around the uk to
 ![Cookie policy page screenshot](cookies.png)
 
 
+#### Error pages
+
+
 ## Deployment
 - The website was deployed to Heroku and can be found [here](https://dating-events-app-512687071453.herokuapp.com/).
 Heroku
