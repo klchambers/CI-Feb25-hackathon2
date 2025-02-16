@@ -27,4 +27,5 @@ urlpatterns = [
     path('events/', include('events.urls')),
     path('profile/', include('user_profile.urls')),
     path('contact/', include('contact.urls')),
+    path('faq/', include('faq.urls')),
 ] #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
