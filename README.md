@@ -62,6 +62,11 @@ People spend a lot of time online and aren't sure where to go to seek connection
 This project is a dating events app where you can select events around the uk to book and join. 
 
 ## Features
+#### Events page
+#### Footer
+#### Team Members
+#### FAQ
+
 
 ## Deployment
 - The website was deployed to Heroku and can be found [here](https://dating-events-app-512687071453.herokuapp.com/).
@@ -101,10 +106,11 @@ os.environ["SECRET_KEY"]=" Your secret key"
 - Django
 
 ## Credits
-- CoPilot within VSCode
-- ChatGPT
-- Leonardo AI
-- 
+- CoPilot within VSCode for code creation and debugging
+- ChatGPT for content creation
+- Leonardo AI for photos
+- pixabay.com for photos
+- unsplash.com for photos 
 
 
 ## Ctrl+Alt+Date: our team!
