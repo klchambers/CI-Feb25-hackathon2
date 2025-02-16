@@ -35,5 +35,5 @@ urlpatterns = [
 ] #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
-handler404 = "dating_event_app.views.custom_404"
-handler500 = "dating_event_app.views.custom_500"
+handler404 = custom_404
+handler500 = custom_500
