@@ -159,8 +159,9 @@ DATABASES = {
     }
 }
 
-#if "DATABASE_URL" in os.environ:
+#if 'DATABASE_URL' in os.environ:
 #    DATABASES = {
+# 'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 #        'default': {
 #            'ENGINE': 'django.db.backends.postgresql',
 #            'NAME': tmpPostgres.path.decode('utf-8').replace('/', ''),
