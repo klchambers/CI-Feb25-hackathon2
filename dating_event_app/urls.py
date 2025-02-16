@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from django.shortcuts import render
 
 from django.conf.urls import handler404, handler500
-from dating_event_app.views import custom_404, custom_500
+from .views import custom_404, custom_500
 
 urlpatterns = [
     path('admin/', admin.site.urls),
