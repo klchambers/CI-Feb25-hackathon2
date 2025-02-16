@@ -97,7 +97,7 @@
                   class="absolute right-0 mt-2 w-48 glass-effect rounded-xl shadow-lg py-1 border border-white/20 hidden group-hover:block">
                   {% if request.user.is_superuser %}
                   <a
-                    href=""
+                    href="{% url 'admin:index' %}"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600">
                     Admin Area
                   </a>
@@ -190,7 +190,7 @@
             <div class="space-y-2">
               {% if request.user.is_superuser %}
               <a
-                href=""
+                href="{% url 'admin:index' %}"
                 class="block px-4 py-2 text-gray-700 hover:bg-rose-50 hover:text-rose-600 rounded-lg">
                 Admin Area
               </a>
