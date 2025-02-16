@@ -148,28 +148,27 @@ LOGIN_REDIRECT_URL = '/'
 
 tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
 
-if "DATABASE_URL" in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': tmpPostgres.path.decode('utf-8').replace('/', ''),
-            'USER': tmpPostgres.username,
-            'PASSWORD': tmpPostgres.password,
-            'HOST': tmpPostgres.hostname,
-            'PORT': 5432,
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': tmpPostgres.path.decode('utf-8').replace('/', ''),
+        'USER': tmpPostgres.username,
+        'PASSWORD': tmpPostgres.password,
+        'HOST': tmpPostgres.hostname,
+        'PORT': 5432,
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
+}
 
-#if 'DATABASE_URL' in os.environ:
+#if "DATABASE_URL" in os.environ:
 #    DATABASES = {
-#        'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+#        'default': {
+#            'ENGINE': 'django.db.backends.postgresql',
+#            'NAME': tmpPostgres.path.decode('utf-8').replace('/', ''),
+#            'USER': tmpPostgres.username,
+#            'PASSWORD': tmpPostgres.password,
+#            'HOST': tmpPostgres.hostname,
+#            'PORT': 5432,
+#        }
 #    }
 #else:
 #    DATABASES = {
