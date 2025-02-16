@@ -90,7 +90,11 @@
                 </button>
                 <div id="dropdownMenu" class="absolute right-0 mt-2 w-48 glass-effect rounded-xl shadow-lg py-1 border border-white/20 hidden">
                   {% if request.user.is_superuser %}
-                    <a href="" class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600">Admin Area</a>
+                  <a
+                    href="{% url 'admin:index' %}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600">
+                    Admin Area
+                  </a>
                   {% endif %}
                   <a href="" class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600">My Profile</a>
                   <a href="{% url 'account_logout' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600">Logout</a>
@@ -131,20 +135,66 @@
       </div>
     
       <!-- Mobile Navigation Menu -->
-      <div id="mobileMenu" class="hidden fixed inset-0 z-50 md:hidden bg-white shadow-lg">
-        <div class="flex flex-col space-y-6 p-6">
-          <a href="{% url 'home' %}" class="text-gray-700 hover:text-rose-600 text-lg">Home</a>
-          <a href="{% url 'events:event_list' %}" class="text-gray-700 hover:text-rose-600 text-lg">Events</a>
-          <a href="{% url 'faq' %}" class="text-gray-700 hover:text-rose-600 text-lg">FAQ</a>
-          <a href="{% url 'contact' %}" class="text-gray-700 hover:text-rose-600 text-lg">Contact</a>
-    
-          {% if request.user.is_authenticated %}
-          <a href="" class="text-gray-700 hover:text-rose-600 text-lg">My Profile</a>
-          <a href="{% url 'account_logout' %}" class="text-gray-700 hover:text-rose-600 text-lg">Logout</a>
-          {% else %}
-          <a href="{% url 'account_login' %}" class="text-gray-700 hover:text-rose-600 text-lg">Login</a>
-          <a href="{% url 'account_signup' %}" class="text-lg bg-gradient-to-r from-rose-500 to-purple-600 text-white rounded-xl px-4 py-2">Sign Up</a>
-          {% endif %}
+      <div
+        id="mobileMenu"
+        class="mobile-menu hidden fixed inset-0 z-50 md:hidden">
+        <div
+          class="fixed inset-0 bg-gray-600 bg-opacity-75"
+          onclick="toggleMobileMenu()"></div>
+        <div
+          class="fixed inset-y-0 left-0 w-64 glass-effect transform transition-transform">
+          <div class="h-full flex flex-col py-6 px-4">
+            <div class="flex items-center justify-between mb-8">
+              <span
+                class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-purple-600">
+                Menu
+              </span>
+              <button
+                onclick="toggleMobileMenu()"
+                class="text-gray-700 hover:text-rose-600">
+                <i class="fas fa-times text-xl"></i>
+              </button>
+            </div>
+            {% if request.user.is_authenticated %}
+            <div class="space-y-2">
+              {% if request.user.is_superuser %}
+              <a
+                href="{% url 'admin:index' %}"
+                class="block px-4 py-2 text-gray-700 hover:bg-rose-50 hover:text-rose-600 rounded-lg">
+                Admin Area
+              </a>
+              {% endif %}
+              <a
+                href="{% url 'match-making' %}"
+                class="block px-4 py-2 text-gray-700 hover:bg-rose-50 hover:text-rose-600 rounded-lg">
+                Match Making
+              </a>
+              <a
+                href=""
+                class="block px-4 py-2 text-gray-700 hover:bg-rose-50 hover:text-rose-600 rounded-lg">
+                My Profile
+              </a>
+              <a
+                href="{% url 'account_logout' %}"
+                class="block px-4 py-2 text-gray-700 hover:bg-rose-50 hover:text-rose-600 rounded-lg">
+                Logout
+              </a>
+            </div>
+            {% else %}
+            <div class="space-y-2">
+              <a
+                href="{% url 'account_login' %}"
+                class="block px-4 py-2 text-gray-700 hover:bg-rose-50 hover:text-rose-600 rounded-lg">
+                Login
+              </a>
+              <a
+                href="{% url 'account_signup' %}"
+                class="block px-4 py-2 bg-gradient-to-r from-rose-500 to-purple-600 text-white rounded-lg hover:from-rose-600 hover:to-purple-700">
+                Sign Up
+              </a>
+            </div>
+            {% endif %}
+          </div>
         </div>
       </div>
     </nav>
@@ -206,7 +256,7 @@
               <h3 class="font-semibold text-gray-800 mb-4">Quick Links</h3>
               <ul class="space-y-2">
                 <li>
-                  <a href="#" class="text-sm text-gray-600 hover:text-rose-600">
+                  <a href="{% url 'events:event_list' %}" class="text-sm text-gray-600 hover:text-rose-600">
                     Events
                   </a>
                 </li>
@@ -230,12 +280,12 @@
               <h3 class="font-semibold text-gray-800 mb-4">Contact</h3>
               <ul class="space-y-2">
                 <li>
-                  <a href="#" class="text-sm text-gray-600 hover:text-rose-600">
+                  <a href="{% url 'contact' %}" class="text-sm text-gray-600 hover:text-rose-600">
                     Support
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="text-sm text-gray-600 hover:text-rose-600">
+                  <a href="{% url 'faq' %}" class="text-sm text-gray-600 hover:text-rose-600">
                     FAQ
                   </a>
                 </li>
