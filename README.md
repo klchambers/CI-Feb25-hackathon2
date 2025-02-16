@@ -108,7 +108,7 @@ os.environ["SECRET_KEY"]=" Your secret key"
 
 
 ## Ctrl+Alt+Date: our team!
-- Hannah Olbrich (Scrum Master/Front-end) [GitHub](https://github.com/hannahro15) [LinkedIn](https://www.linkedin.com/in/hannaholbrich/)
+- Hannah Olbrich (Scrum Master/Agile/Front-end) [GitHub](https://github.com/hannahro15) [LinkedIn](https://www.linkedin.com/in/hannaholbrich/)
 - Anthony Nelson (Front-end) [GitHub](https://github.com/anthonyjn08) [LinkedIn](https://www.linkedin.com/in/anthony-nelson8/)
 - Dènes Kálnoky (Back-end) [GitHub](https://github.com/DFCMK) [LinkedIn](https://www.linkedin.com/in/denes-kalnoky-2306a1346/)
 - Emma Lamont (Documentation/Presentation) [GitHub](https://github.com/elamont174) [LinkedIn](https://www.linkedin.com/in/emma-lamont/)
