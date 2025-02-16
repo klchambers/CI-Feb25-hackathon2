@@ -20,6 +20,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.shortcuts import render
 
+from django.conf.urls import handler404, handler500
+from dating_event_app.views import custom_404, custom_500
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
@@ -32,16 +35,5 @@ urlpatterns = [
 ] #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
-def custom_404(request, exception):
-    """
-    Error handler that renders a friendly 404 page.
-    """
-    return render(request, 'errors/404.html', status=404)
-
-
-def custom_500(request):
-    """
-    Error handler that renders a friendly 500 page to direct user
-    back to shop or profile.
-    """
-    return render(request, 'errors/500.html', status=500)
+handler404 = "dating_event_app.views.custom_404"
+handler500 = "dating_event_app.views.custom_500"
