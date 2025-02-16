@@ -96,6 +96,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 ROOT_URLCONF = 'dating_event_app.urls'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
