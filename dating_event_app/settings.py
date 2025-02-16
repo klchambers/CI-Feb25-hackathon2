@@ -16,10 +16,8 @@ import dj_database_url
 if os.path.isfile('env.py'):
     import env
 
-from dotenv import load_dotenv
 from urllib.parse import urlparse
 
-load_dotenv()
 
 
 # Added as temporary workaround of the: 
@@ -99,6 +97,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 ROOT_URLCONF = 'dating_event_app.urls'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -155,7 +155,7 @@ if 'DATABASE_URL' in os.environ:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': tmpPostgres.path.decode('utf-8').replace('/', ''),
+            'NAME': tmpPostgres.path.replace('/', ''),
             'USER': tmpPostgres.username,
             'PASSWORD': tmpPostgres.password,
             'HOST': tmpPostgres.hostname,
