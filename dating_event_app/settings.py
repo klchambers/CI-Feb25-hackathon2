@@ -16,12 +16,6 @@ import dj_database_url
 if os.path.isfile('env.py'):
     import env
 
-from dotenv import load_dotenv
-from urllib.parse import urlparse
-
-load_dotenv()
-
-
 # Added as temporary workaround of the: 
 # AttributeError: 'BlankChoiceIterator' object has no attribute '__len__' "
 
@@ -39,22 +33,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'sdsd7gsd7f')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True
 
 ALLOWED_HOSTS = [
     'dating-events-app-512687071453.herokuapp.com',
     'localhost',
     '127.0.0.1',
+    '.gitpod.io',
     ]
 
 # Add deployed project links here
-CSRF_TRUSTED_ORIGINS = [
-    'http://dating-events-app-512687071453.herokuapp.com',
-    'http://127.0.0.1:8000',
-    ]
+CSRF_TRUSTED_ORIGINS = ['https://dating-events-app-512687071453.herokuapp.com']
 
 
 
@@ -84,6 +77,16 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'storages',
 ]
+
+# AllAuth Configuration
+ACCOUNT_LOGIN_METHODS = {'username'}  
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
