@@ -4,6 +4,7 @@ from django.utils.text import slugify
 from django.contrib.auth.models import User
 import uuid
 from django.core.validators import URLValidator
+from cloudinary.models import CloudinaryField
 
 class EventCategory(models.Model):
     name = models.CharField(max_length=100)
@@ -31,12 +32,25 @@ class Event(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     capacity = models.PositiveIntegerField()
     spots_remaining = models.PositiveIntegerField()
-    image = models.ImageField(upload_to='events/', null=True, blank=True)
     booking_url = models.URLField(max_length=500, blank=True, null=True, validators=[URLValidator()])
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     is_demo = models.BooleanField(default=False)
+    image = CloudinaryField(
+        'image',
+        folder='events',  # This creates an 'events' folder in your Cloudinary account
+        null=True,
+        blank=True,
+        transformation={
+            'quality': 'auto:good',
+            'fetch_format': 'auto',
+            'width': 'auto',
+            'crop': 'scale'
+        },
+        default='default_profile_ju9xum'  # Your default image ID
+    )
+
 
     def save(self, *args, **kwargs):
         # Generate a slug if it doesn’t exist

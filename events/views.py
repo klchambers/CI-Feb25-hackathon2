@@ -142,9 +142,10 @@ class EventCreateView(LoginRequiredMixin, CreateView):
         return reverse_lazy('events:event_detail', kwargs={'slug': self.object.slug})
 
     def form_invalid(self, form):
+        print("Form errors:", form.errors)
+        print("POST data received:", self.request.POST)
+        print("FILES received:", self.request.FILES)  # Debug uploaded image
         messages.error(self.request, "There was an error creating the event.")
-        print("Form errors:", form.errors)  # Log errors
-        print("POST data received:", self.request.POST)  # Log request data
         return self.render_to_response(self.get_context_data(form=form))
 
     
