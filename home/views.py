@@ -22,3 +22,11 @@ def cookies(request):
 
 def service(request):
     return render(request, 'home/service.html')
+  
+
+def safety(request):
+    return render(request, 'home/safety.html')
+
+def success_stories(request):
+    return render(request, 'home/success_stories.html')
+

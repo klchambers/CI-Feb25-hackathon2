@@ -11,6 +11,15 @@ from django.shortcuts import redirect
 import logging
 from .forms import EventForm
 
+import logging
+from django.views.generic import ListView
+from django.db.models import Q
+from django.utils import timezone
+from datetime import timedelta
+from .models import Event, EventCategory
+
+logger = logging.getLogger(__name__)
+
 class EventListView(ListView):
     model = Event
     template_name = 'events/event_list.html'
@@ -20,13 +29,23 @@ class EventListView(ListView):
     def get_queryset(self):
         queryset = Event.objects.filter(is_active=True)
 
+        # Search Functionality from Navbar
+        search_query = self.request.GET.get('q', '').strip()
+        if search_query:
+            queryset = queryset.filter(
+                Q(title__icontains=search_query) |
+                Q(description__icontains=search_query) |
+                Q(location_name__icontains=search_query) |
+                Q(city__icontains=search_query)
+            )
+            logger.info(f"User searched for: {search_query}")
+
+        # My Events Filter
         if self.request.GET.get('my_events') and self.request.user.is_authenticated:
             queryset = queryset.filter(created_by=self.request.user)
-        
+
         # Category Filter
         category = self.request.GET.get('category')
-
-         # user-specific filters
         if category:
             queryset = queryset.filter(category__slug=category)
 
@@ -34,9 +53,7 @@ class EventListView(ListView):
         location = self.request.GET.get('location', '').strip().lower()
         if location:
             location_query = Q()
-            # Split location input to handle postal codes with spaces
             location_parts = location.split()
-            
             for part in location_parts:
                 location_query |= (
                     Q(city__icontains=part) |
@@ -50,7 +67,6 @@ class EventListView(ListView):
         # Enhanced Date Filter
         date_filter = self.request.GET.get('date_filter')
         today = timezone.now().date()
-        
         if date_filter:
             if date_filter == 'today':
                 queryset = queryset.filter(date__date=today)
@@ -58,7 +74,6 @@ class EventListView(ListView):
                 week_end = today + timedelta(days=7)
                 queryset = queryset.filter(date__date__range=[today, week_end])
             elif date_filter == 'this_weekend':
-                # Get next weekend (Friday to Sunday)
                 friday = today + timedelta((4 - today.weekday()) % 7)
                 sunday = friday + timedelta(days=2)
                 queryset = queryset.filter(date__date__range=[friday, sunday])
@@ -73,7 +88,7 @@ class EventListView(ListView):
                 three_months = today + timedelta(days=90)
                 queryset = queryset.filter(date__date__range=[today, three_months])
 
-        # Store the original queryset count for template context
+        # Store event counts for context
         self.total_events = Event.objects.filter(is_active=True).count()
         self.filtered_count = queryset.count()
 
@@ -82,35 +97,35 @@ class EventListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = EventCategory.objects.all()
-        
-        # Add active filters to context
+
+        # Include active search and filter values in context
         context['active_filters'] = {
+            'q': self.request.GET.get('q', ''),
             'category': self.request.GET.get('category', ''),
             'date_filter': self.request.GET.get('date_filter', ''),
             'location': self.request.GET.get('location', '')
         }
 
-        # Add counts to context
+        # Event count information
         context['total_events'] = self.total_events
         context['filtered_count'] = self.filtered_count
 
-        #user created events
+        # User-specific event count
         if self.request.user.is_authenticated:
             context['user_events'] = Event.objects.filter(
                 created_by=self.request.user,
                 is_active=True
             ).count()
-        
-        # If no events found with current filters, add suggested events
+
+        # If no events found, suggest upcoming events
         if self.filtered_count == 0:
             context['suggested_events'] = Event.objects.filter(
                 is_active=True,
                 date__gte=timezone.now()
             ).order_by('date')[:3]
-        
+
         return context
-    
-logger = logging.getLogger(__name__)
+
 
 class EventCreateView(LoginRequiredMixin, CreateView):
     model = Event
