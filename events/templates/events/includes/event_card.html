@@ -1,21 +1,24 @@
 {# templates/events/includes/event_card.html #}
 {% load static %}
 <div class="event-card glass-effect rounded-2xl overflow-hidden hover:shadow-lg transition-shadow">
-    <!-- Debug info -->
-    <div class="p-2 bg-yellow-100">
-        Event Title: {{ event.title }}
-    </div>
-    
     <div class="event-image relative overflow-hidden h-48">
         {% if event.image %}
-            <img src="{{ event.image.url }}" alt="{{ event.title }}" class="w-full h-full object-cover">
+            {% if 'cloudinary' in event.image.url %}
+                {# Handle Cloudinary images #}
+                <img src="{{ event.image.url }}" alt="{{ event.title }}" class="w-full h-full object-cover">
+            {% else %}
+                {# Handle local/existing images #}
+                <img src="{{ event.image.url }}" alt="{{ event.title }}" class="w-full h-full object-cover">
+            {% endif %}
         {% else %}
+            {# Default image from static files #}
             <img src="{% static 'images/default-event.jpg' %}" alt="{{ event.title }}" class="w-full h-full object-cover">
         {% endif %}
         <div class="absolute top-4 right-4 bg-purple-500 text-white px-3 py-1 rounded-full text-sm">
             {{ event.category.name }}
         </div>
     </div>
+    
     <div class="p-6">
         <h3 class="text-xl font-semibold mb-2">{{ event.title }}</h3>
         <div class="flex items-center text-gray-600 mb-4">
@@ -35,13 +38,22 @@
         <p class="text-gray-600 mb-6">
             {{ event.description|truncatewords:20 }}
         </p>
-        <div class="flex justify-between items-center">
-            <span class="text-lg font-semibold text-purple-600">${{ event.price }}</span>
-            <a href="{% url 'events:event_detail' event.slug %}" 
-               class="px-4 py-2 bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-xl 
-                      hover:from-purple-600 hover:to-indigo-700 transition-all transform hover:scale-[1.02]">
-                Book Now
-            </a>
+        <div class="flex justify-between items
+-center">
+            <span class="text-lg font-semibold text-purple-600">£{{ event.price }}</span>
+            {% if event.booking_url %}
+                <a href="{{ event.booking_url }}" target="_blank" rel="noopener noreferrer"
+                   class="px-4 py-2 bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-xl 
+                          hover:from-purple-600 hover:to-indigo-700 transition-all transform hover:scale-[1.02]">
+                    Book Now
+                </a>
+            {% else %}
+                <a href="{% url 'events:event_detail' event.slug %}" 
+                   class="px-4 py-2 bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-xl 
+                          hover:from-purple-600 hover:to-indigo-700 transition-all transform hover:scale-[1.02]">
+                    View Details
+                </a>
+            {% endif %}
         </div>
     </div>
 </div>
