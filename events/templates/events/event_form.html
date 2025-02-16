@@ -116,6 +116,61 @@
                     </div>
                 </div>
 
+                <!-- Location Details -->
+                <div class="space-y-6">
+                    <div class="space-y-2">
+                        <label for="id_location_name" class="text-sm font-medium text-gray-700">
+                            <span class="mr-2">📍</span>Venue Name
+                        </label>
+                        <input type="text" name="location_name" id="id_location_name" required
+                            {% if object %}value="{{ object.location_name }}"{% endif %}
+                            class="w-full p-3 rounded-xl border border-gray-200 bg-white/50 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                            placeholder="Where the magic happens ✨">
+                    </div>
+                    
+                    <!-- Address Field -->
+                    <div class="space-y-2">
+                        <label for="id_address" class="text-sm font-medium text-gray-700">
+                            <span class="mr-2">🏠</span>Street Address
+                        </label>
+                        <textarea name="address" id="id_address" required rows="2"
+                                class="w-full p-3 rounded-xl border border-gray-200 bg-white/50 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                                placeholder="Enter the full street address ✨">{% if object %}{{ object.address }}{% endif %}</textarea>
+                    </div>
+
+                    <!-- City, State, Zip Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="space-y-2">
+                            <label for="id_city" class="text-sm font-medium text-gray-700">
+                                <span class="mr-2">🌆</span>City
+                            </label>
+                            <input type="text" name="city" id="id_city" required
+                                {% if object %}value="{{ object.city }}"{% endif %}
+                                class="w-full p-3 rounded-xl border border-gray-200 bg-white/50 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                                placeholder="City name">
+                        </div>
+                        <div class="space-y-2">
+                            <label for="id_state" class="text-sm font-medium text-gray-700">
+                                <span class="mr-2">🗺️</span>State/Region
+                            </label>
+                            <input type="text" name="state" id="id_state"
+                                {% if object %}value="{{ object.state }}"{% endif %}
+                                class="w-full p-3 rounded-xl border border-gray-200 bg-white/50 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                                placeholder="State or region">
+                        </div>
+                        <div class="space-y-2">
+                            <label for="id_zip_code" class="text-sm font-medium text-gray-700">
+                                <span class="mr-2">📮</span>Postal Code
+                            </label>
+                            <input type="text" name="zip_code" id="id_zip_code" required
+                                {% if object %}value="{{ object.zip_code }}"{% endif %}
+                                class="w-full p-3 rounded-xl border border-gray-200 bg-white/50 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                                placeholder="Postal code">
+                            <p class="text-xs text-gray-500">Required for accurate location display 💫</p>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Description -->
                 <div class="space-y-2">
                     <label for="id_description" class="text-sm font-medium text-gray-700">
