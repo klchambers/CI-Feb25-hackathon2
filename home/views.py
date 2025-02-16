@@ -8,3 +8,12 @@ def home(request):
 
 def team(request):
     return render(request, 'home/team.html')
+
+def privacy(request):
+    return render(request, 'home/privacy.html')
+
+def cookies(request):
+    return render(request, 'home/cookies.html')
+
+def service(request):
+    return render(request, 'home/service.html')
