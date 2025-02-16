@@ -20,3 +20,6 @@ def service(request):
 
 def safety(request):
     return render(request, 'home/safety.html')
+
+def success_stories(request):
+    return render(request, 'home/success_stories.html')
