@@ -3,6 +3,16 @@
 {% block page_header %}
     <div class="contact-form-container">
         <h1>FAQs</h1>
-
+        {% for faq in published_faqs %}
+            <div class="faq">
+                <h2>{{ faq.question }}</h2>
+                <p>{{ faq.answer }}</p>
+            </div>
+        {% endfor %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
     </div>
 {% endblock %}
