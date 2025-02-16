@@ -146,22 +146,39 @@ LOGIN_REDIRECT_URL = '/'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
+#tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': tmpPostgres.path.decode('utf-8').replace('/', ''),
-        'USER': tmpPostgres.username,
-        'PASSWORD': tmpPostgres.password,
-        'HOST': tmpPostgres.hostname,
-        'PORT': 5432,
+if 'DATABASE_URL' in os.environ:
+    # Use the database URL from the environment (for production)
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-}
+else:
+    try:
+        # Try to use the temporary PostgreSQL database (for development)
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': tmpPostgres.path.decode('utf-8').replace('/', ''),
+                'USER': tmpPostgres.username,
+                'PASSWORD': tmpPostgres.password,
+                'HOST': tmpPostgres.hostname,
+                'PORT': 5432,
+            }
+        }
+    except NameError:
+        # If tmpPostgres is not available, fall back to SQLite
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            }
+        }
 
-#if 'DATABASE_URL' in os.environ:
-#    DATABASES = {
-# 'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+# if 'DATABASE_URL' in os.environ:
+#       DATABASES = {
+#             Delete the line bleow when merge conflict is resolved, test DB and add if/else back
+#            'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 #        'default': {
 #            'ENGINE': 'django.db.backends.postgresql',
 #            'NAME': tmpPostgres.path.decode('utf-8').replace('/', ''),
