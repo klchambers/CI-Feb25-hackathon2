@@ -17,6 +17,7 @@ from django.db.models import Q
 from django.utils import timezone
 from datetime import timedelta
 from .models import Event, EventCategory
+from django import forms
 
 logger = logging.getLogger(__name__)
 
@@ -196,3 +197,18 @@ class EventDetailView(DetailView):
             date__gte=timezone.now()
         ).exclude(id=event.id)[:3]
         return context
+    
+class EventForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ['title', 'description', 'category', 'date', 'duration', 
+                 'location_name', 'address', 'city', 'state', 'zip_code', 
+                 'price', 'capacity', 'image', 'booking_url']
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['image'].required = False
+        self.fields['booking_url'].required = False
+        self.fields['booking_url'].widget.attrs.update({
+            'placeholder': 'https://example.com/book-event'
+        })

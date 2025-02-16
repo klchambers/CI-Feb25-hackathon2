@@ -80,14 +80,23 @@
                 <!-- Booking Section -->
                 <div class="flex flex-col md:flex-row justify-between items-center p-6 bg-gray-50 rounded-xl">
                     <div>
-                        <p class="text-2xl font-bold text-purple-600">${{ event.price }}</p>
+                        <p class="text-2xl font-bold text-purple-600">£{{ event.price }}</p>
                         <p class="text-gray-600">{{ event.spots_remaining }} spots remaining</p>
                     </div>
-                    <button class="mt-4 md:mt-0 px-8 py-3 bg-gradient-to-r from-purple-500 to-indigo-600 
-                                 text-white rounded-xl hover:from-purple-600 hover:to-indigo-700 
-                                 transition-all transform hover:scale-[1.02]">
-                        Book Now
-                    </button>
+                    {% if event.booking_url %}
+                        <a href="{{ event.booking_url }}" target="_blank" rel="noopener noreferrer"
+                           class="mt-4 md:mt-0 px-8 py-3 bg-gradient-to-r from-purple-500 to-indigo-600 
+                                  text-white rounded-xl hover:from-purple-600 hover:to-indigo-700 
+                                  transition-all transform hover:scale-[1.02]">
+                            Book Now
+                        </a>
+                    {% else %}
+                        <button class="mt-4 md:mt-0 px-8 py-3 bg-gradient-to-r from-purple-500 to-indigo-600 
+                                      text-white rounded-xl hover:from-purple-600 hover:to-indigo-700 
+                                      transition-all transform hover:scale-[1.02]">
+                            Contact to Book
+                        </button>
+                    {% endif %}
                 </div>
             </div>
         </div>

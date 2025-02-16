@@ -85,6 +85,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap4',
     'storages',
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -248,6 +250,12 @@ SITE_ID = 1
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'your-cloud-name',
+    'API_KEY': 'your-api-key',
+    'API_SECRET': 'your-api-secret'
+}
+
 tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
 
 if 'DATABASE_URL' in os.environ:
@@ -259,19 +267,46 @@ if 'DATABASE_URL' in os.environ:
             'PASSWORD': tmpPostgres.password,
             'HOST': tmpPostgres.hostname,
             'PORT': 5432,
-            }
         }
+    }
 else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-            }
         }
+    }
 
-# Password validation
-# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
+# Static files configuration (keep your existing setup)
+STATIC_URL = '/static/'
+if 'DEVELOPMENT' in os.environ:
+    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+# Media files configuration
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Cloudinary settings for production only
+if 'DEVELOPMENT' not in os.environ:
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+        'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+        'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+        'STATIC_ENABLED': False  # Ensure Cloudinary doesn't handle static files
+    }
+    # Only use Cloudinary for NEW media files
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# Keep all your other existing settings as they are
+LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'UTC'
+USE_I18N = True
+USE_TZ = True
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Your existing AUTH_PASSWORD_VALIDATORS settings
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -286,51 +321,3 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-
-# Internationalization
-# https://docs.djangoproject.com/en/4.2/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_TZ = True
-
-#if 'DEVELOPMENT' in os.environ:
-#    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-#    DEFAULT_FROM_EMAIL = 'handcraft@example.com'
-#else:
-#    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-#    EMAIL_PORT = 587
-#    EMAIL_USE_TLS = True
-#    EMAIL_HOST = 'smtp.gmail.com'
-#    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-#    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
-#    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-#STATIC_URL = '/static/'
-#STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-#MEDIA_URL = '/media/'
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
-STATIC_URL = '/static/'
-if 'DEVELOPMENT' in os.environ:
-    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-

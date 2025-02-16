@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 import uuid
+from django.core.validators import URLValidator
 
 class EventCategory(models.Model):
     name = models.CharField(max_length=100)
@@ -31,6 +32,7 @@ class Event(models.Model):
     capacity = models.PositiveIntegerField()
     spots_remaining = models.PositiveIntegerField()
     image = models.ImageField(upload_to='events/', null=True, blank=True)
+    booking_url = models.URLField(max_length=500, blank=True, null=True, validators=[URLValidator()])
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
