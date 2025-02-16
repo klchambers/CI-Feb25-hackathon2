@@ -62,10 +62,38 @@ People spend a lot of time online and aren't sure where to go to seek connection
 This project is a dating events app where you can select events around the uk to book and join. 
 
 ## Features
+#### Home page
+![Home page screenshot](home.png)
+
 #### Events page
+![Events page screenshot](events.png)
+
 #### Footer
+![Footer screenshot](footer.png)
+
 #### Team Members
+![Team members page screenshot](team.png)
+
+#### Success Stories
+![Success stories page screenshot]()
+
+#### Support
+![Support page screenshot]()
+
 #### FAQ
+![FAQ page screenshot]()
+
+#### Safety tips
+![Safety tips page screenshot]()
+
+#### Privacy policy
+![Privacy policy page screenshot](privacy.png)
+
+#### Terms of Service
+![Terms of Service page screenshot](service.png)
+
+#### Cookie policy 
+![Cookie policy page screenshot](cookies.png)
 
 
 ## Deployment
