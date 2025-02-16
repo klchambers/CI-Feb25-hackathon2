@@ -77,6 +77,7 @@ INSTALLED_APPS = [
     'user_profile',
     'events',
     'contact',
+    'faq',
 
     # other
     'crispy_forms',
