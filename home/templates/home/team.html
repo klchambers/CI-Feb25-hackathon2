@@ -1,99 +1,195 @@
-{% extends 'base.html' %}
-
-{% load static %}
-
-{% block title %}Team members{% endblock %}
-
-{% block content %}
-<h1 class="text-3xl font-bold mb-6">About Us</h1>
+{% extends 'base.html' %} {% load static %} {% block title %}Team
+members{%endblock %} {% block content %}
+<h1 class="text-3xl font-bold mb-6 mt-24">About Us</h1>
 
 <div class="container mx-auto">
-    <div class="flex flex-wrap -mx-3">
-        <div class="w-full sm:w-1/2 lg:w-1/3 p-3">
-            <div class="bg-white rounded-lg shadow-md p-4">
-                <div class="p-4">
-                    <h5 class="text-xl font-bold mb-2">Hannah Olbrich</h5>
-                    <h6 class="text-l mb-2">Scrum Master</h6>
-                    <p class="flex space-x-2">
-                        <a href="https://www.linkedin.com/in/hannaholbrich/" target="_blank" aria-label="Opens link to LinkedIn" class="text-blue-600"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="https://github.com/hannahro15" target="_blank" aria-label="Opens link to GitHub" class="text-gray-800"><i class="fa-brands fa-github"></i></a>
-                    </p>
-                </div>
-            </div>
+  <div class="flex flex-wrap -mx-3">
+    <div class="w-full sm:w-1/2 lg:w-1/3 p-3">
+      <div class="bg-white rounded-lg shadow-md p-4">
+        <div class="p-4">
+          <h5 class="text-xl font-bold mb-2">Hannah Olbrich</h5>
+          <h6 class="text-l mb-2">Scrum Master</h6>
+          <p class="flex space-x-2">
+            <a
+              href="https://www.linkedin.com/in/hannaholbrich/"
+              target="_blank"
+              aria-label="Opens link to LinkedIn"
+              class="text-blue-600">
+              <i class="fa-brands fa-linkedin fa-xl"></i>
+            </a>
+            <a
+              href="https://github.com/hannahro15"
+              target="_blank"
+              aria-label="Opens link to GitHub"
+              class="text-gray-800">
+              <i class="fa-brands fa-github fa-xl"></i>
+            </a>
+          </p>
         </div>
-        <div class="w-full sm:w-1/2 lg:w-1/3 p-3">
-            <div class="bg-white rounded-lg shadow-md p-4">
-                <div class="p-4">
-                    <h5 class="text-xl font-bold mb-2">Anthony Nelson</h5>
-                    <h6 class="text-l mb-2">Front-end</h6>
-                    <p class="flex space-x-2">
-                        <a href="https://www.linkedin.com/in/anthony-nelson8/" target="_blank" aria-label="Opens link to LinkedIn" class="text-blue-600"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="https://github.com/anthonyjn08" target="_blank" aria-label="Opens link to GitHub" class="text-gray-800"><i class="fa-brands fa-github"></i></a>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="w-full sm:w-1/2 lg:w-1/3 p-3">
-            <div class="bg-white rounded-lg shadow-md p-4">
-                <div class="p-4">
-                    <h5 class="text-xl font-bold mb-2">Dènes Kálnoky</h5>
-                    <h6 class="text-l mb-2">Back-end</h6>
-                    <p class="flex space-x-2">
-                        <a href="https://www.linkedin.com/in/denes-kalnoky-2306a1346/" target="_blank" aria-label="Opens link to LinkedIn" class="text-blue-600"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="https://github.com/DFCMK" target="_blank" aria-label="Opens link to GitHub" class="text-gray-800"><i class="fa-brands fa-github"></i></a>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="w-full sm:w-1/2 lg:w-1/3 p-3">
-            <div class="bg-white rounded-lg shadow-md p-4">
-                <div class="p-4">
-                    <h5 class="text-xl font-bold mb-2">Emma Lamont</h5>
-                    <h6 class="text-l mb-2">Documentation/Presentation</h6>
-                    <p class="flex space-x-2">
-                        <a href="https://www.linkedin.com/in/emma-lamont/" target="_blank" aria-label="Opens link to LinkedIn" class="text-blue-600"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="https://github.com/elamont174" target="_blank" aria-label="Opens link to GitHub" class="text-gray-800"><i class="fa-brands fa-github"></i></a>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="w-full sm:w-1/2 lg:w-1/3 p-3">
-            <div class="bg-white rounded-lg shadow-md p-4">
-                <div class="p-4">
-                    <h5 class="text-xl font-bold mb-2">Finnbarr Ambrose</h5>
-                    <h6 class="text-l mb-2">Content/Front-end</h6>
-                    <p class="flex space-x-2">
-                        <a href="https://www.linkedin.com/in/finnbarr-ambrose-5682221b4/" target="_blank" aria-label="Opens link to LinkedIn" class="text-blue-600"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="https://github.com/FinnbarrAmbrose" target="_blank" aria-label="Opens link to GitHub" class="text-gray-800"><i class="fa-brands fa-github"></i></a>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="w-full sm:w-1/2 lg:w-1/3 p-3">
-            <div class="bg-white rounded-lg shadow-md p-4">
-                <div class="p-4">
-                    <h5 class="text-xl font-bold mb-2">Kieran Chambers</h5>
-                    <h6 class="text-l mb-2">Front-end</h6>
-                    <p class="flex space-x-2">
-                        <a href="https://www.linkedin.com/in/kieranchamberskc/" target="_blank" aria-label="Opens link to LinkedIn" class="text-blue-600"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="https://github.com/klchambers" target="_blank" aria-label="Opens link to GitHub" class="text-gray-800"><i class="fa-brands fa-github"></i></a>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="w-full sm:w-1/2 lg:w-1/3 p-3">
-            <div class="bg-white rounded-lg shadow-md p-4">
-                <div class="p-4">
-                    <h5 class="text-xl font-bold mb-2">Lochlann O'Higgins Theilmann</h5>
-                    <h6 class="text-l mb-2">Design/Front-end</h6>
-                    <p class="flex space-x-2">
-                        <a href="https://www.linkedin.com/in/lochlann-ohiggins-developer/" target="_blank" aria-label="Opens link to LinkedIn" class="text-blue-600"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="https://github.com/Lochy2000" target="_blank" aria-label="Opens link to GitHub" class="text-gray-800"><i class="fa-brands fa-github"></i></a>
-                    </p>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="w-full sm:w-1/2 lg:w-1/3 p-3">
+      <div class="bg-white rounded-lg shadow-md p-4">
+        <div class="p-4">
+          <h5 class="text-xl font-bold mb-2">Anthony Nelson</h5>
+          <h6 class="text-l mb-2">Front-end</h6>
+          <p class="flex space-x-2">
+            <a
+              href="https://www.linkedin.com/in/anthony-nelson8/"
+              target="_blank"
+              aria-label="Opens link to LinkedIn"
+              class="text-blue-600">
+              <i class="fa-brands fa-linkedin fa-xl"></i>
+            </a>
+            <a
+              href="https://github.com/anthonyjn08"
+              target="_blank"
+              aria-label="Opens link to GitHub"
+              class="text-gray-800">
+              <i class="fa-brands fa-github fa-xl"></i>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="w-full sm:w-1/2 lg:w-1/3 p-3">
+      <div class="bg-white rounded-lg shadow-md p-4">
+        <div class="p-4">
+          <h5 class="text-xl font-bold mb-2">Dènes Kálnoky</h5>
+          <h6 class="text-l mb-2">Back-end</h6>
+          <p class="flex space-x-2">
+            <a
+              href="https://www.linkedin.com/in/denes-kalnoky-2306a1346/"
+              target="_blank"
+              aria-label="Opens link to LinkedIn"
+              class="text-blue-600">
+              <i class="fa-brands fa-linkedin fa-xl"></i>
+            </a>
+            <a
+              href="https://github.com/DFCMK"
+              target="_blank"
+              aria-label="Opens link to GitHub"
+              class="text-gray-800">
+              <i class="fa-brands fa-github fa-xl"></i>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="w-full sm:w-1/2 lg:w-1/3 p-3">
+      <div class="bg-white rounded-lg shadow-md p-4">
+        <div class="p-4">
+          <h5 class="text-xl font-bold mb-2">Emma Lamont</h5>
+          <h6 class="text-l mb-2">Documentation/Presentation</h6>
+          <p class="flex space-x-2">
+            <a
+              href="https://www.linkedin.com/in/emma-lamont/"
+              target="_blank"
+              aria-label="Opens link to LinkedIn"
+              class="text-blue-600">
+              <i class="fa-brands fa-linkedin fa-xl"></i>
+            </a>
+            <a
+              href="https://github.com/elamont174"
+              target="_blank"
+              aria-label="Opens link to GitHub"
+              class="text-gray-800">
+              <i class="fa-brands fa-github fa-xl"></i>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="w-full sm:w-1/2 lg:w-1/3 p-3">
+      <div class="bg-white rounded-lg shadow-md p-4">
+        <div class="p-4">
+          <h5 class="text-xl font-bold mb-2">Finnbarr Ambrose</h5>
+          <h6 class="text-l mb-2">Content/Front-end</h6>
+          <p class="flex space-x-2">
+            <a
+              href="https://www.linkedin.com/in/finnbarr-ambrose-5682221b4/"
+              target="_blank"
+              aria-label="Opens link to LinkedIn"
+              class="text-blue-600">
+              <i class="fa-brands fa-linkedin fa-xl"></i>
+            </a>
+            <a
+              href="https://github.com/FinnbarrAmbrose"
+              target="_blank"
+              aria-label="Opens link to GitHub"
+              class="text-gray-800">
+              <i class="fa-brands fa-github fa-xl"></i>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="w-full sm:w-1/2 lg:w-1/3 p-3">
+      <div class="bg-white rounded-lg shadow-md p-4">
+        <div class="p-4">
+          <h5 class="text-xl font-bold mb-2">Kieran Chambers</h5>
+          <h6 class="text-l mb-2">Front-end</h6>
+          <p class="flex space-x-2">
+            <a
+              href="https://www.linkedin.com/in/kieranchamberskc/"
+              target="_blank"
+              aria-label="Opens link to LinkedIn"
+              class="text-blue-600">
+              <i class="fa-brands fa-linkedin fa-xl"></i>
+            </a>
+            <a
+              href="https://github.com/klchambers"
+              target="_blank"
+              aria-label="Opens link to GitHub"
+              class="text-gray-800">
+              <i class="fa-brands fa-github fa-xl"></i>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="w-full sm:w-1/2 lg:w-1/3 p-3">
+      <div class="bg-white rounded-lg shadow-md p-4">
+        <div class="p-4">
+          <h5 class="text-xl font-bold mb-2">Lochlann O'Higgins Theilmann</h5>
+          <h6 class="text-l mb-2">Design/Front-end</h6>
+          <p class="flex space-x-2">
+            <a
+              href="https://www.linkedin.com/in/lochlann-ohiggins-developer/"
+              target="_blank"
+              aria-label="Opens link to LinkedIn"
+              class="text-blue-600">
+              <i class="fa-brands fa-linkedin fa-xl"></i>
+            </a>
+            <a
+              href="https://github.com/Lochy2000"
+              target="_blank"
+              aria-label="Opens link to GitHub"
+              class="text-gray-800">
+              <i class="fa-brands fa-github fa-xl"></i>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="div mt-16 ms-4">
+      <h2 class="text-3xl font-bold mb-12">About the Site</h2>
+      <p>
+        As the footer comments, the aim of the site in to
+        <span class="font-semibold">
+          "Create meaningful connections through unique events and experiences".
+        </span>
+        Our aim is to help people find events to enable them to do this. All
+        events have the potential to either create a lasting impact or reignite
+        the spark in an existing relationship. Whether that comes from an
+        intimate workshop, a mixers event or maybe the dance floor at one of the
+        dance classes. The events are inclusive and welcoming, celebrating
+        diversity and making sure that everyone feels valued and also has fun.
+      </p>
+    </div>
+    <br />
+  </div>
 </div>
 
 {% endblock %}
