@@ -6,6 +6,7 @@ from .forms import FaqForm
 
 # Create your views here.
 def faq(request):
+
     # Assign published FAQs to a variable
     published_faqs = Faq.objects.filter(published=True)
 
