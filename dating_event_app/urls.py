@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.shortcuts import render
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,3 +30,18 @@ urlpatterns = [
     path('contact/', include('contact.urls')),
     path('faq/', include('faq.urls')),
 ] #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+def custom_404(request, exception):
+    """
+    Error handler that renders a friendly 404 page.
+    """
+    return render(request, 'errors/404.html', status=404)
+
+
+def custom_500(request):
+    """
+    Error handler that renders a friendly 500 page to direct user
+    back to shop or profile.
+    """
+    return render(request, 'errors/500.html', status=500)
