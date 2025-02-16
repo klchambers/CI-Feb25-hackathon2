@@ -17,3 +17,6 @@ def cookies(request):
 
 def service(request):
     return render(request, 'home/service.html')
+
+def safety(request):
+    return render(request, 'home/safety.html')
