@@ -253,7 +253,8 @@ SITE_ID = 1
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'your-cloud-name',
     'API_KEY': 'your-api-key',
-    'API_SECRET': 'your-api-secret'
+    'API_SECRET': 'your-api-secret',
+    'SECURE': True
 }
 
 tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
