@@ -24,3 +24,4 @@ s3transfer==0.10.3
 six==1.16.0
 sqlparse==0.5.3
 whitenoise==6.9.0
+django-jazzmin==4.12.2
