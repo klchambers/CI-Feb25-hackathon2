@@ -12,7 +12,7 @@ Build a dating app with a focus on connections and inclusivity
 ### UI/UX (is the app intuitive, visually appealing and easy to navigate?)
 - We love the look and feel of our site. The soft tones and intuitive design make finding your perfect date night easy! 
 ### Functionality (does the app function as intended?)
-- 
+- Manual testing was carried out throughtout the build of the site and bugs fixed as they were found. The site can be accessed [here](https://dating-events-app-512687071453.herokuapp.com/) for you to enjoy!
 ### Social impact (does the app address critical issues like inclusivity, safety or accessibility?)
 - Here at Dating Events, it doesn't matter who are you or who you love, you're welcome here. With a moderation system amdeasy to navigate filters including LGBTQA+ and neurodiversity, we want Dating Events to be a safe space for everyone. 
 ### Documentation (is the project well planned out?)
@@ -61,11 +61,6 @@ People spend a lot of time online and aren't sure where to go to seek connection
 
 This project is a dating events app where you can select events around the uk to book and join. 
 
-## Accessibility
-
-## Responsiveness
-
-
 ## Features
 
 ## Deployment
@@ -106,6 +101,11 @@ os.environ["SECRET_KEY"]=" Your secret key"
 - Django
 
 ## Credits
+- CoPilot within VSCode
+- ChatGPT
+- Leonardo AI
+- 
+
 
 ## Ctrl+Alt+Date: our team!
 - Hannah Olbrich (Scrum Master/Front-end) [GitHub](https://github.com/hannahro15) [LinkedIn](https://www.linkedin.com/in/hannaholbrich/)
