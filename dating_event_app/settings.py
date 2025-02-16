@@ -144,13 +144,11 @@ SITE_ID = 1
 #tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
 
 if 'DATABASE_URL' in os.environ:
-    # Use the database URL from the environment (for production)
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
 else:
     try:
-        # Try to use the temporary PostgreSQL database (for development)
         DATABASES = {
             'default': {
                 'ENGINE': 'django.db.backends.postgresql',
