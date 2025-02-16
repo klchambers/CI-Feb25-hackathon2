@@ -97,7 +97,7 @@
                   class="absolute right-0 mt-2 w-48 glass-effect rounded-xl shadow-lg py-1 border border-white/20 hidden group-hover:block">
                   {% if request.user.is_superuser %}
                   <a
-                    href=""
+                    href="{% url 'admin:index' %}"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600">
                     Admin Area
                   </a>
@@ -190,7 +190,7 @@
             <div class="space-y-2">
               {% if request.user.is_superuser %}
               <a
-                href=""
+                href="{% url 'admin:index' %}"
                 class="block px-4 py-2 text-gray-700 hover:bg-rose-50 hover:text-rose-600 rounded-lg">
                 Admin Area
               </a>
@@ -284,7 +284,7 @@
               <h3 class="font-semibold text-gray-800 mb-4">Quick Links</h3>
               <ul class="space-y-2">
                 <li>
-                  <a href="#" class="text-sm text-gray-600 hover:text-rose-600">
+                  <a href="{% url 'events:event_list' %}" class="text-sm text-gray-600 hover:text-rose-600">
                     Events
                   </a>
                 </li>
@@ -308,11 +308,15 @@
               <h3 class="font-semibold text-gray-800 mb-4">Contact</h3>
               <ul class="space-y-2">
                 <li>
-                  <a href="#" class="text-sm text-gray-600 hover:text-rose-600">
+                  <a href="{% url 'contact' %}" class="text-sm text-gray-600 hover:text-rose-600">
                     Support
                   </a>
                 </li>
-                <li><a href="{% url 'faq' %}">FAQ</a></li>
+                <li>
+                  <a href="{% url 'faq' %}" class="text-sm text-gray-600 hover:text-rose-600">
+                    FAQ
+                  </a>
+                </li>
                 <li>
                   <a href="#" class="text-sm text-gray-600 hover:text-rose-600">
                     Safety Tips
