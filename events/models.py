@@ -2,9 +2,10 @@
 from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth.models import User
-import uuid
 from django.core.validators import URLValidator
 from cloudinary.models import CloudinaryField
+import cloudinary
+import uuid
 
 class EventCategory(models.Model):
     name = models.CharField(max_length=100)
@@ -48,7 +49,7 @@ class Event(models.Model):
             'width': 'auto',
             'crop': 'scale'
         },
-        default='default_profile_ju9xum'  # Your default image ID
+        default='default_profile_ju9xum' 
     )
 
 
